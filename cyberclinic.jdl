@@ -1,0 +1,59 @@
+application {
+  config {
+    baseName CyberClinic
+    applicationType monolith
+    packageName org.cyberwarriors
+    authenticationType jwt
+    prodDatabaseType mysql
+    clientFramework react
+  }
+  entities *
+}
+
+entity JobRequest {
+  fileContent AnyBlob required
+  score Integer,
+  status Status required,
+  requestType RequestType required
+}
+
+// New Entity
+entity JobReport {
+  reportDate Instant required,
+  details TextBlob,
+  isSuccessful Boolean
+}
+// Entity for the execution process details
+entity JobExecutionReport {
+  startTime Instant,
+  endTime Instant,
+  executionNode String,
+  executionLog TextBlob,
+  status Status required
+}
+
+enum Status {
+  PENDING, IN_PROGRESS, ERROR, COMPLETED
+}
+
+enum RequestType {
+  BATCH, REALTIME, EMAIL
+}
+
+
+relationship ManyToOne {
+  JobRequest{user(login)} to User with builtInEntity
+  JobReport{user(login)} to User with builtInEntity
+  JobExecutionReport{user(login)} to User with builtInEntity
+}
+
+// Added OneToOne Relationship
+relationship OneToOne {
+  JobReport{jobRequest} to JobRequest
+  JobExecutionReport{jobRequest} to JobRequest
+
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

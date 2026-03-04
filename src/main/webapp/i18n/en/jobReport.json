@@ -1,0 +1,28 @@
+{
+  "cyberClinicApp": {
+    "jobReport": {
+      "home": {
+        "title": "Job Reports",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Job Report",
+        "createOrEditLabel": "Create or edit a Job Report",
+        "notFound": "No Job Reports found"
+      },
+      "created": "A new Job Report is created with identifier {{ param }}",
+      "updated": "A Job Report is updated with identifier {{ param }}",
+      "deleted": "A Job Report is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Job Report {{ id }}?"
+      },
+      "detail": {
+        "title": "Job Report"
+      },
+      "id": "ID",
+      "reportDate": "Report Date",
+      "details": "Details",
+      "isSuccessful": "Is Successful",
+      "jobRequest": "Job Request",
+      "user": "User"
+    }
+  }
+}

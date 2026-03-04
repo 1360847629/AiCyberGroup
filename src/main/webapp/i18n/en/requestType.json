@@ -1,0 +1,10 @@
+{
+  "cyberClinicApp": {
+    "RequestType": {
+      "null": "",
+      "BATCH": "BATCH",
+      "REALTIME": "REALTIME",
+      "EMAIL": "EMAIL"
+    }
+  }
+}

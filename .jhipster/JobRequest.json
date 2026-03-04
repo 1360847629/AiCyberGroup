@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20260304201800"
+  },
+  "applications": ["CyberClinic"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "fileContent",
+      "fieldType": "AnyBlob",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "score",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PENDING,IN_PROGRESS,ERROR,COMPLETED"
+    },
+    {
+      "fieldName": "requestType",
+      "fieldType": "RequestType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "BATCH,REALTIME,EMAIL"
+    }
+  ],
+  "name": "JobRequest",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}
