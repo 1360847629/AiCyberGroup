@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Welcome, Java Hipster!",
-    "subtitle": "This is your homepage",
+    "title": "Welcome to Cyber AI group!",
+    "subtitle": "Where Cyber AI meets innovation",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },
