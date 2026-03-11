@@ -1,10 +1,140 @@
 /* ==========================================================================
 Main page styles
 ========================================================================== */
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Section */
+.home-header {
+  background: linear-gradient(135deg, #fa4616 0%, #fa4616 100%);
+  color: white;
+  padding: 60px 0;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  .header-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .header-subtitle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 0;
+    opacity: 0.95;
+  }
+
+  .header-sponsor-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .header-sponsor-link {
+      display: inline-block;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      .header-sponsor-logo {
+        max-height: 160px;
+        max-width: 300px;
+        width: auto;
+        height: auto;
+        filter: brightness(0.9);
+        transition: all 0.3s ease;
+
+        &:hover {
+          filter: brightness(1.1);
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
+
+/* Mission Section */
+.mission-section {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+  margin-bottom: 40px;
+
+  .mission-card {
+    background: white;
+    border-left: 5px solid #fa4616;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .mission-title {
+    color: #fa4616;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .mission-statement {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    text-align: justify;
+  }
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px 0;
+  margin-bottom: 40px;
+}
+
+/* Hipster Image */
 .hipster {
   display: inline-block;
   width: 100%;
-  height: 497px;
+  max-height: 400px;
   background: url('/content/images/jhipster_family_member_1.svg') no-repeat center top;
   background-size: contain;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-header {
+    padding: 40px 0;
+
+    .header-title {
+      font-size: 1.8rem;
+    }
+
+    .header-subtitle {
+      font-size: 1rem;
+    }
+
+    .header-sponsor-inline {
+      .header-sponsor-logo {
+        max-height: 100px;
+        max-width: 240px;
+      }
+    }
+  }
+
+  .mission-section .mission-card {
+    padding: 25px;
+  }
 }
