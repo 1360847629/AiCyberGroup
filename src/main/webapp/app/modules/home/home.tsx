@@ -17,7 +17,7 @@ export const Home = () => {
       </Col>
       <Col md="9">
         <h1 className="display-4">
-          <Translate contentKey="home.title">Welcome, Java Hipster!</Translate>
+          <Translate contentKey="home.title">Welcome, Cyber Ai Group!</Translate>
         </h1>
         <p className="lead">
           <Translate contentKey="home.subtitle">This is your homepage</Translate>
@@ -53,9 +53,9 @@ export const Home = () => {
             </Alert>
           </div>
         )}
-        <p>
-          <Translate contentKey="home.question">If you have any question on JHipster:</Translate>
-        </p>
+        <h3>
+          <Translate contentKey="home.question">If you have any question on Cyber AI Group:</Translate>
+        </h3>
 
         <ul>
           <li>
