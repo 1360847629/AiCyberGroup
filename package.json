@@ -45,8 +45,6 @@
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "husky",
-    "prettier:check": "prettier --check \"{,src/**/,webpack/,.blueprint/**/}*.{md,json,yml,js,cjs,mjs,ts,cts,mts,java,html,tsx,css,scss}\"",
-    "prettier:format": "prettier --write \"{,src/**/,webpack/,.blueprint/**/}*.{md,json,yml,js,cjs,mjs,ts,cts,mts,java,html,tsx,css,scss}\"",
     "services:up": "docker compose -f src/main/docker/services.yml up --wait",
     "start": "npm run webapp:dev --",
     "start-tls": "npm run webapp:dev -- --env tls",

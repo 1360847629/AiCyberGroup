@@ -5,15 +5,15 @@
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },
-    "question": "If you have any question on JHipster:",
+    "question": "If you have any question on Cyber AI Group:",
     "link": {
-      "homepage": "JHipster homepage",
-      "stackoverflow": "JHipster on Stack Overflow",
-      "bugtracker": "JHipster bug tracker",
-      "chat": "JHipster public chat room",
-      "follow": "follow @jhipster on Twitter"
+      "homepage": "Cyber AI Group homepage",
+      "stackoverflow": "Cyber AI Group on Stack Overflow",
+      "bugtracker": "Cyber AI Group bug tracker",
+      "chat": "Cyber AI Group public chat room",
+      "follow": "follow @cyberaigroup on Twitter"
     },
-    "like": "If you like JHipster, don't forget to give us a star on",
+    "like": "If you like Cyber AI Group, don't forget to give us a star on",
     "github": "GitHub"
   }
 }
