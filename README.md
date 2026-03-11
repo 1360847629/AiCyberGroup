@@ -1,4 +1,6 @@
-# CyberClinic
+# AICyberSolution
+
+This project is a prototype of AI Cyber Security Solutions from Indiana Insitute of Technology.
 
 This application was generated using JHipster 8.11.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v8.11.0](https://www.jhipster.tech/documentation-archive/v8.11.0).
 
