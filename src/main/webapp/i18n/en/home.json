@@ -2,6 +2,9 @@
   "home": {
     "title": "Welcome to Cyber AI group!",
     "subtitle": "Where Cyber AI meets innovation",
+    "missionTitle": "Our Mission",
+    "mission-title": "Our Mission",
+    "mission-statement": "To empower cybersecurity professionals and organizations through cutting-edge AI technologies, innovative solutions, and comprehensive training. We are dedicated to advancing the cybersecurity landscape by combining artificial intelligence with expert knowledge to create safer digital environments.",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },
@@ -11,7 +14,7 @@
       "stackoverflow": "Cyber AI Group on Stack Overflow",
       "bugtracker": "Cyber AI Group bug tracker",
       "chat": "Cyber AI Group public chat room",
-      "follow": "follow @cyberaigroup on Twitter"
+      "follow": "Follow @cyberaigroup on Twitter"
     },
     "like": "If you like Cyber AI Group, don't forget to give us a star on",
     "github": "GitHub"

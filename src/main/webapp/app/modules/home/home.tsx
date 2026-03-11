@@ -1,9 +1,8 @@
 import './home.scss';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
-import { Alert, Col, Row } from 'reactstrap';
+import { Alert, Col, Row, Container } from 'reactstrap';
 
 import { useAppSelector } from 'app/config/store';
 
@@ -11,69 +10,82 @@ export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
 
   return (
-    <Row>
-      <Col md="3" className="pad">
-        <span className="hipster rounded" />
-      </Col>
-      <Col md="9">
-        <h1 className="display-4">
-          <Translate contentKey="home.title">Welcome, Cyber Ai Group!</Translate>
-          <p className="lead">
-            <Translate contentKey="home.subtitle">Where Cyber AI meets innovation</Translate>
-          </p>
-        </h1>
-        <p className="lead">
-          <Translate contentKey="home.mission-title">Mission Statement</Translate>
-        </p>
-        {account?.login ? (
-          <div>
-            <Alert color="success">
-              <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
-                You are logged in as user {account.login}.
+    <div className="home-page">
+      {/* Header Section */}
+      <header className="home-header">
+        <Container>
+          <Row className="align-items-center">
+            <Col md="6">
+              <h1 className="header-title">
+                <Translate contentKey="home.title">Welcome, Cyber Ai Group!</Translate>
+              </h1>
+              <p className="header-subtitle">
+                <Translate contentKey="home.subtitle">Where Cyber AI meets innovation</Translate>
+              </p>
+            </Col>
+            <Col md="3">
+              <span className="hipster rounded" />
+            </Col>
+            <Col md="3" className="header-sponsor-inline">
+              <a href="https://lillyendowment.org/" target="_blank" rel="noopener noreferrer" className="header-sponsor-link">
+                <img src="/content/images/lily_logo.jpg" alt="Sponsor Logo" className="header-sponsor-logo" />
+              </a>
+            </Col>
+          </Row>
+        </Container>
+      </header>
+
+      {/* Mission Statement Section */}
+      <section className="mission-section">
+        <Container>
+          <div className="mission-card">
+            <h2 className="mission-title">
+              <Translate contentKey="home.mission-title">Our Mission</Translate>
+            </h2>
+            <p className="mission-statement">
+              <Translate contentKey="home.mission-statement">
+                To empower cybersecurity professionals and organizations through cutting-edge AI technologies, innovative solutions, and
+                comprehensive training. We are dedicated to advancing the cybersecurity landscape by combining artificial intelligence with
+                expert knowledge to create safer digital environments.
               </Translate>
-            </Alert>
+            </p>
           </div>
-        ) : (
-          <div>
-            <Alert color="warning">
-              <Translate contentKey="global.messages.info.authenticated.prefix">If you want to </Translate>
+        </Container>
+      </section>
 
-              <Link to="/login" className="alert-link">
-                <Translate contentKey="global.messages.info.authenticated.link"> sign in</Translate>
-              </Link>
-              <Translate contentKey="global.messages.info.authenticated.suffix">
-                , you can try the default accounts:
-                <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
-                <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
-              </Translate>
-            </Alert>
+      {/* Main Content Section */}
+      <section className="main-content">
+        <Container>
+          {account?.login && (
+            <div>
+              <Alert color="success">
+                <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
+                  You are logged in as user {account.login}.
+                </Translate>
+              </Alert>
+            </div>
+          )}
+          <div className="questions-section">
+            <h3>
+              <Translate contentKey="home.question">If you have any question on Cyber AI Group:</Translate>
+            </h3>
 
-            <Alert color="warning">
-              <Translate contentKey="global.messages.info.register.noaccount">You do not have an account yet?</Translate>&nbsp;
-              <Link to="/account/register" className="alert-link">
-                <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
-              </Link>
-            </Alert>
+            <ul>
+              <li>
+                <a href="https://www.indianatech.edu" target="_blank" rel="noopener noreferrer">
+                  <Translate contentKey="home.link.homepage">AICyber homepage</Translate>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/AICyber" target="_blank" rel="noopener noreferrer">
+                  <Translate contentKey="home.link.follow">Follow @AICyber on Twitter</Translate>
+                </a>
+              </li>
+            </ul>
           </div>
-        )}
-        <h3>
-          <Translate contentKey="home.question">If you have any question on Cyber AI Group:</Translate>
-        </h3>
-
-        <ul>
-          <li>
-            <a href="https://www.indianatech.edu" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.homepage">AICyber homepage</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/AICyber" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.follow">follow @AICyber on Twitter</Translate>
-            </a>
-          </li>
-        </ul>
-      </Col>
-    </Row>
+        </Container>
+      </section>
+    </div>
   );
 };
 
