@@ -2,9 +2,10 @@
   "home": {
     "title": "Welcome to Cyber AI group!",
     "subtitle": "Where Cyber AI meets innovation",
-    "missionTitle": "Our Mission",
     "mission-title": "Our Mission",
     "mission-statement": "To empower cybersecurity professionals and organizations through cutting-edge AI technologies, innovative solutions, and comprehensive training. We are dedicated to advancing the cybersecurity landscape by combining artificial intelligence with expert knowledge to create safer digital environments.",
+    "artificial-intelligence": "Artificial Intelligence",
+    "AI-description": "Artificial Intelligence (AI) is revolutionizing the cybersecurity landscape by providing advanced tools and techniques to detect, prevent, and respond to cyber threats. AI-powered systems can analyze vast amounts of data in real-time, identify patterns, and predict potential attacks, enabling organizations to stay one step ahead of threat actors. At Cyber AI Group, we leverage the power of AI to enhance cybersecurity defenses and protect digital assets. Our AI Cybersecurity soltuions are designed to provide comprehensive protection against the evolving threat landscape and capitalize on AI initiative to enhance cybersecurity capabiltiies.",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },
