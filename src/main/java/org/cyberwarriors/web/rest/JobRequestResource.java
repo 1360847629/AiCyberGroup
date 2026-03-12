@@ -159,6 +159,11 @@ public class JobRequestResource {
             LOG.debug("REST request to get all JobRequests where jobExecutionReport is null");
             return new ResponseEntity<>(jobRequestService.findAllWhereJobExecutionReportIsNull(), HttpStatus.OK);
         }
+
+        if ("sanitizationreport-is-null".equals(filter)) {
+            LOG.debug("REST request to get all JobRequests where sanitizationReport is null");
+            return new ResponseEntity<>(jobRequestService.findAllWhereSanitizationReportIsNull(), HttpStatus.OK);
+        }
         LOG.debug("REST request to get a page of JobRequests");
         Page<JobRequestDTO> page;
         if (eagerload) {

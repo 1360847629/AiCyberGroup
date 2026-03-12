@@ -9,13 +9,13 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
- * A JobReport.
+ * A SanitizationReport.
  */
 @Entity
-@Table(name = "job_report")
+@Table(name = "sanitization_report")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class JobReport implements Serializable {
+public class SanitizationReport implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,7 +49,7 @@ public class JobReport implements Serializable {
         return this.id;
     }
 
-    public JobReport id(Long id) {
+    public SanitizationReport id(Long id) {
         this.setId(id);
         return this;
     }
@@ -62,7 +62,7 @@ public class JobReport implements Serializable {
         return this.reportDate;
     }
 
-    public JobReport reportDate(Instant reportDate) {
+    public SanitizationReport reportDate(Instant reportDate) {
         this.setReportDate(reportDate);
         return this;
     }
@@ -75,7 +75,7 @@ public class JobReport implements Serializable {
         return this.details;
     }
 
-    public JobReport details(String details) {
+    public SanitizationReport details(String details) {
         this.setDetails(details);
         return this;
     }
@@ -88,7 +88,7 @@ public class JobReport implements Serializable {
         return this.isSuccessful;
     }
 
-    public JobReport isSuccessful(Boolean isSuccessful) {
+    public SanitizationReport isSuccessful(Boolean isSuccessful) {
         this.setIsSuccessful(isSuccessful);
         return this;
     }
@@ -105,7 +105,7 @@ public class JobReport implements Serializable {
         this.jobRequest = jobRequest;
     }
 
-    public JobReport jobRequest(JobRequest jobRequest) {
+    public SanitizationReport jobRequest(JobRequest jobRequest) {
         this.setJobRequest(jobRequest);
         return this;
     }
@@ -118,7 +118,7 @@ public class JobReport implements Serializable {
         this.user = user;
     }
 
-    public JobReport user(User user) {
+    public SanitizationReport user(User user) {
         this.setUser(user);
         return this;
     }
@@ -130,10 +130,10 @@ public class JobReport implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof JobReport)) {
+        if (!(o instanceof SanitizationReport)) {
             return false;
         }
-        return getId() != null && getId().equals(((JobReport) o).getId());
+        return getId() != null && getId().equals(((SanitizationReport) o).getId());
     }
 
     @Override
@@ -145,7 +145,7 @@ public class JobReport implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "JobReport{" +
+        return "SanitizationReport{" +
             "id=" + getId() +
             ", reportDate='" + getReportDate() + "'" +
             ", details='" + getDetails() + "'" +

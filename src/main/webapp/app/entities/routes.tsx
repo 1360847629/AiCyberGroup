@@ -6,6 +6,7 @@ import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import JobRequest from './job-request';
 import JobReport from './job-report';
 import JobExecutionReport from './job-execution-report';
+import SanitizationReport from './sanitization-report';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -16,6 +17,7 @@ export default () => {
         <Route path="job-request/*" element={<JobRequest />} />
         <Route path="job-report/*" element={<JobReport />} />
         <Route path="job-execution-report/*" element={<JobExecutionReport />} />
+        <Route path="sanitization-report/*" element={<SanitizationReport />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

@@ -18,13 +18,25 @@
       "fieldName": "status",
       "fieldType": "Status",
       "fieldValidateRules": ["required"],
-      "fieldValues": "PENDING,IN_PROGRESS,ERROR,COMPLETED"
+      "fieldValues": "PENDING,QUEUED,SANITIZING,SANITIZED,FAILED_SANITIZATION,IN_PROGRESS,RETRYING,COMPLETED,COMPLETED_WITH_WARNINGS,ERROR,CANCELLED"
+    },
+    {
+      "fieldName": "fileType",
+      "fieldType": "FileType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PDF,DOCX,TXT,RTF,CSV,XLSX,JSON,XML,YAML,TOML,PCAP,LOG,EVTX,SQL,EXE,SH,BAT,PS1,BIN,HTML,MD,JAVA,PY,JS,ZIP,TAR,GZ,PNG,JPG,SVG"
     },
     {
       "fieldName": "requestType",
       "fieldType": "RequestType",
       "fieldValidateRules": ["required"],
       "fieldValues": "BATCH,REALTIME,EMAIL"
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "Priority",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LOW,MEDIUM,HIGH"
     }
   ],
   "name": "JobRequest",

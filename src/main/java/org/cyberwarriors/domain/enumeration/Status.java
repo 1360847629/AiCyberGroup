@@ -5,7 +5,14 @@ package org.cyberwarriors.domain.enumeration;
  */
 public enum Status {
     PENDING,
+    QUEUED,
+    SANITIZING,
+    SANITIZED,
+    FAILED_SANITIZATION,
     IN_PROGRESS,
-    ERROR,
+    RETRYING,
     COMPLETED,
+    COMPLETED_WITH_WARNINGS,
+    ERROR,
+    CANCELLED,
 }

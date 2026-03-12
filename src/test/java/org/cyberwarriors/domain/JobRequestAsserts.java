@@ -55,7 +55,9 @@ public class JobRequestAsserts {
             )
             .satisfies(a -> assertThat(a.getScore()).as("check score").isEqualTo(expected.getScore()))
             .satisfies(a -> assertThat(a.getStatus()).as("check status").isEqualTo(expected.getStatus()))
-            .satisfies(a -> assertThat(a.getRequestType()).as("check requestType").isEqualTo(expected.getRequestType()));
+            .satisfies(a -> assertThat(a.getFileType()).as("check fileType").isEqualTo(expected.getFileType()))
+            .satisfies(a -> assertThat(a.getRequestType()).as("check requestType").isEqualTo(expected.getRequestType()))
+            .satisfies(a -> assertThat(a.getPriority()).as("check priority").isEqualTo(expected.getPriority()));
     }
 
     /**

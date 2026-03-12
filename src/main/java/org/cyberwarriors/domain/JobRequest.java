@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import org.cyberwarriors.domain.enumeration.FileType;
+import org.cyberwarriors.domain.enumeration.Priority;
 import org.cyberwarriors.domain.enumeration.RequestType;
 import org.cyberwarriors.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
@@ -43,8 +45,18 @@ public class JobRequest implements Serializable {
 
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(name = "file_type", nullable = false)
+    private FileType fileType;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "request_type", nullable = false)
     private RequestType requestType;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "priority", nullable = false)
+    private Priority priority;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -56,6 +68,10 @@ public class JobRequest implements Serializable {
     @JsonIgnoreProperties(value = { "jobRequest", "user" }, allowSetters = true)
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "jobRequest")
     private JobExecutionReport jobExecutionReport;
+
+    @JsonIgnoreProperties(value = { "jobRequest", "user" }, allowSetters = true)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "jobRequest")
+    private SanitizationReport sanitizationReport;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -124,6 +140,19 @@ public class JobRequest implements Serializable {
         this.status = status;
     }
 
+    public FileType getFileType() {
+        return this.fileType;
+    }
+
+    public JobRequest fileType(FileType fileType) {
+        this.setFileType(fileType);
+        return this;
+    }
+
+    public void setFileType(FileType fileType) {
+        this.fileType = fileType;
+    }
+
     public RequestType getRequestType() {
         return this.requestType;
     }
@@ -135,6 +164,19 @@ public class JobRequest implements Serializable {
 
     public void setRequestType(RequestType requestType) {
         this.requestType = requestType;
+    }
+
+    public Priority getPriority() {
+        return this.priority;
+    }
+
+    public JobRequest priority(Priority priority) {
+        this.setPriority(priority);
+        return this;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public User getUser() {
@@ -188,6 +230,25 @@ public class JobRequest implements Serializable {
         return this;
     }
 
+    public SanitizationReport getSanitizationReport() {
+        return this.sanitizationReport;
+    }
+
+    public void setSanitizationReport(SanitizationReport sanitizationReport) {
+        if (this.sanitizationReport != null) {
+            this.sanitizationReport.setJobRequest(null);
+        }
+        if (sanitizationReport != null) {
+            sanitizationReport.setJobRequest(this);
+        }
+        this.sanitizationReport = sanitizationReport;
+    }
+
+    public JobRequest sanitizationReport(SanitizationReport sanitizationReport) {
+        this.setSanitizationReport(sanitizationReport);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -216,7 +277,9 @@ public class JobRequest implements Serializable {
             ", fileContentContentType='" + getFileContentContentType() + "'" +
             ", score=" + getScore() +
             ", status='" + getStatus() + "'" +
+            ", fileType='" + getFileType() + "'" +
             ", requestType='" + getRequestType() + "'" +
+            ", priority='" + getPriority() + "'" +
             "}";
     }
 }

@@ -53,6 +53,7 @@ public class CacheConfiguration {
             createCache(cm, org.cyberwarriors.domain.JobRequest.class.getName());
             createCache(cm, org.cyberwarriors.domain.JobReport.class.getName());
             createCache(cm, org.cyberwarriors.domain.JobExecutionReport.class.getName());
+            createCache(cm, org.cyberwarriors.domain.SanitizationReport.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

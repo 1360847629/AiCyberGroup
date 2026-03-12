@@ -8,7 +8,9 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
 import { Status } from 'app/shared/model/enumerations/status.model';
+import { FileType } from 'app/shared/model/enumerations/file-type.model';
 import { RequestType } from 'app/shared/model/enumerations/request-type.model';
+import { Priority } from 'app/shared/model/enumerations/priority.model';
 import { createEntity, getEntity, reset, updateEntity } from './job-request.reducer';
 
 export const JobRequestUpdate = () => {
@@ -25,7 +27,9 @@ export const JobRequestUpdate = () => {
   const updating = useAppSelector(state => state.jobRequest.updating);
   const updateSuccess = useAppSelector(state => state.jobRequest.updateSuccess);
   const statusValues = Object.keys(Status);
+  const fileTypeValues = Object.keys(FileType);
   const requestTypeValues = Object.keys(RequestType);
+  const priorityValues = Object.keys(Priority);
 
   const handleClose = () => {
     navigate(`/job-request${location.search}`);
@@ -73,7 +77,9 @@ export const JobRequestUpdate = () => {
       ? {}
       : {
           status: 'PENDING',
+          fileType: 'PDF',
           requestType: 'BATCH',
+          priority: 'LOW',
           ...jobRequestEntity,
           user: jobRequestEntity?.user?.id,
         };
@@ -134,6 +140,19 @@ export const JobRequestUpdate = () => {
                 ))}
               </ValidatedField>
               <ValidatedField
+                label={translate('cyberClinicApp.jobRequest.fileType')}
+                id="job-request-fileType"
+                name="fileType"
+                data-cy="fileType"
+                type="select"
+              >
+                {fileTypeValues.map(fileType => (
+                  <option value={fileType} key={fileType}>
+                    {translate(`cyberClinicApp.FileType.${fileType}`)}
+                  </option>
+                ))}
+              </ValidatedField>
+              <ValidatedField
                 label={translate('cyberClinicApp.jobRequest.requestType')}
                 id="job-request-requestType"
                 name="requestType"
@@ -143,6 +162,19 @@ export const JobRequestUpdate = () => {
                 {requestTypeValues.map(requestType => (
                   <option value={requestType} key={requestType}>
                     {translate(`cyberClinicApp.RequestType.${requestType}`)}
+                  </option>
+                ))}
+              </ValidatedField>
+              <ValidatedField
+                label={translate('cyberClinicApp.jobRequest.priority')}
+                id="job-request-priority"
+                name="priority"
+                data-cy="priority"
+                type="select"
+              >
+                {priorityValues.map(priority => (
+                  <option value={priority} key={priority}>
+                    {translate(`cyberClinicApp.Priority.${priority}`)}
                   </option>
                 ))}
               </ValidatedField>

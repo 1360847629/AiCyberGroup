@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { JhiItemCount, JhiPagination, Translate, byteSize, getPaginationState, openFile } from 'react-jhipster';
+import { JhiItemCount, JhiPagination, TextFormat, Translate, getPaginationState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { APP_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { getEntities } from './job-request.reducer';
+import { getEntities } from './sanitization-report.reducer';
 
-export const JobRequest = () => {
+export const SanitizationReport = () => {
   const dispatch = useAppDispatch();
 
   const pageLocation = useLocation();
@@ -20,9 +21,9 @@ export const JobRequest = () => {
     overridePaginationStateWithQueryParams(getPaginationState(pageLocation, ITEMS_PER_PAGE, 'id'), pageLocation.search),
   );
 
-  const jobRequestList = useAppSelector(state => state.jobRequest.entities);
-  const loading = useAppSelector(state => state.jobRequest.loading);
-  const totalItems = useAppSelector(state => state.jobRequest.totalItems);
+  const sanitizationReportList = useAppSelector(state => state.sanitizationReport.entities);
+  const loading = useAppSelector(state => state.sanitizationReport.loading);
+  const totalItems = useAppSelector(state => state.sanitizationReport.totalItems);
 
   const getAllEntities = () => {
     dispatch(
@@ -90,99 +91,88 @@ export const JobRequest = () => {
 
   return (
     <div>
-      <h2 id="job-request-heading" data-cy="JobRequestHeading">
-        <Translate contentKey="cyberClinicApp.jobRequest.home.title">Job Requests</Translate>
+      <h2 id="sanitization-report-heading" data-cy="SanitizationReportHeading">
+        <Translate contentKey="cyberClinicApp.sanitizationReport.home.title">Sanitization Reports</Translate>
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
-            <Translate contentKey="cyberClinicApp.jobRequest.home.refreshListLabel">Refresh List</Translate>
+            <Translate contentKey="cyberClinicApp.sanitizationReport.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          <Link to="/job-request/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
+          <Link
+            to="/sanitization-report/new"
+            className="btn btn-primary jh-create-entity"
+            id="jh-create-entity"
+            data-cy="entityCreateButton"
+          >
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="cyberClinicApp.jobRequest.home.createLabel">Create new Job Request</Translate>
+            <Translate contentKey="cyberClinicApp.sanitizationReport.home.createLabel">Create new Sanitization Report</Translate>
           </Link>
         </div>
       </h2>
       <div className="table-responsive">
-        {jobRequestList && jobRequestList.length > 0 ? (
+        {sanitizationReportList && sanitizationReportList.length > 0 ? (
           <Table responsive>
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="cyberClinicApp.jobRequest.id">ID</Translate>{' '}
+                  <Translate contentKey="cyberClinicApp.sanitizationReport.id">ID</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
                 </th>
-                <th className="hand" onClick={sort('fileContent')}>
-                  <Translate contentKey="cyberClinicApp.jobRequest.fileContent">File Content</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('fileContent')} />
+                <th className="hand" onClick={sort('reportDate')}>
+                  <Translate contentKey="cyberClinicApp.sanitizationReport.reportDate">Report Date</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('reportDate')} />
                 </th>
-                <th className="hand" onClick={sort('score')}>
-                  <Translate contentKey="cyberClinicApp.jobRequest.score">Score</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('score')} />
+                <th className="hand" onClick={sort('details')}>
+                  <Translate contentKey="cyberClinicApp.sanitizationReport.details">Details</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('details')} />
                 </th>
-                <th className="hand" onClick={sort('status')}>
-                  <Translate contentKey="cyberClinicApp.jobRequest.status">Status</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('status')} />
-                </th>
-                <th className="hand" onClick={sort('fileType')}>
-                  <Translate contentKey="cyberClinicApp.jobRequest.fileType">File Type</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('fileType')} />
-                </th>
-                <th className="hand" onClick={sort('requestType')}>
-                  <Translate contentKey="cyberClinicApp.jobRequest.requestType">Request Type</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('requestType')} />
-                </th>
-                <th className="hand" onClick={sort('priority')}>
-                  <Translate contentKey="cyberClinicApp.jobRequest.priority">Priority</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('priority')} />
+                <th className="hand" onClick={sort('isSuccessful')}>
+                  <Translate contentKey="cyberClinicApp.sanitizationReport.isSuccessful">Is Successful</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('isSuccessful')} />
                 </th>
                 <th>
-                  <Translate contentKey="cyberClinicApp.jobRequest.user">User</Translate> <FontAwesomeIcon icon="sort" />
+                  <Translate contentKey="cyberClinicApp.sanitizationReport.jobRequest">Job Request</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="cyberClinicApp.sanitizationReport.user">User</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
             </thead>
             <tbody>
-              {jobRequestList.map((jobRequest, i) => (
+              {sanitizationReportList.map((sanitizationReport, i) => (
                 <tr key={`entity-${i}`} data-cy="entityTable">
                   <td>
-                    <Button tag={Link} to={`/job-request/${jobRequest.id}`} color="link" size="sm">
-                      {jobRequest.id}
+                    <Button tag={Link} to={`/sanitization-report/${sanitizationReport.id}`} color="link" size="sm">
+                      {sanitizationReport.id}
                     </Button>
                   </td>
                   <td>
-                    {jobRequest.fileContent ? (
-                      <div>
-                        {jobRequest.fileContentContentType ? (
-                          <a onClick={openFile(jobRequest.fileContentContentType, jobRequest.fileContent)}>
-                            <Translate contentKey="entity.action.open">Open</Translate>
-                            &nbsp;
-                          </a>
-                        ) : null}
-                        <span>
-                          {jobRequest.fileContentContentType}, {byteSize(jobRequest.fileContent)}
-                        </span>
-                      </div>
+                    {sanitizationReport.reportDate ? (
+                      <TextFormat type="date" value={sanitizationReport.reportDate} format={APP_DATE_FORMAT} />
                     ) : null}
                   </td>
-                  <td>{jobRequest.score}</td>
+                  <td>{sanitizationReport.details}</td>
+                  <td>{sanitizationReport.isSuccessful ? 'true' : 'false'}</td>
                   <td>
-                    <Translate contentKey={`cyberClinicApp.Status.${jobRequest.status}`} />
+                    {sanitizationReport.jobRequest ? (
+                      <Link to={`/job-request/${sanitizationReport.jobRequest.id}`}>{sanitizationReport.jobRequest.id}</Link>
+                    ) : (
+                      ''
+                    )}
                   </td>
-                  <td>
-                    <Translate contentKey={`cyberClinicApp.FileType.${jobRequest.fileType}`} />
-                  </td>
-                  <td>
-                    <Translate contentKey={`cyberClinicApp.RequestType.${jobRequest.requestType}`} />
-                  </td>
-                  <td>
-                    <Translate contentKey={`cyberClinicApp.Priority.${jobRequest.priority}`} />
-                  </td>
-                  <td>{jobRequest.user ? jobRequest.user.login : ''}</td>
+                  <td>{sanitizationReport.user ? sanitizationReport.user.login : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`/job-request/${jobRequest.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                      <Button
+                        tag={Link}
+                        to={`/sanitization-report/${sanitizationReport.id}`}
+                        color="info"
+                        size="sm"
+                        data-cy="entityDetailsButton"
+                      >
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
@@ -190,7 +180,7 @@ export const JobRequest = () => {
                       </Button>
                       <Button
                         tag={Link}
-                        to={`/job-request/${jobRequest.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        to={`/sanitization-report/${sanitizationReport.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="primary"
                         size="sm"
                         data-cy="entityEditButton"
@@ -202,7 +192,7 @@ export const JobRequest = () => {
                       </Button>
                       <Button
                         onClick={() =>
-                          (window.location.href = `/job-request/${jobRequest.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`)
+                          (window.location.href = `/sanitization-report/${sanitizationReport.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`)
                         }
                         color="danger"
                         size="sm"
@@ -222,13 +212,13 @@ export const JobRequest = () => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="cyberClinicApp.jobRequest.home.notFound">No Job Requests found</Translate>
+              <Translate contentKey="cyberClinicApp.sanitizationReport.home.notFound">No Sanitization Reports found</Translate>
             </div>
           )
         )}
       </div>
       {totalItems ? (
-        <div className={jobRequestList && jobRequestList.length > 0 ? '' : 'd-none'}>
+        <div className={sanitizationReportList && sanitizationReportList.length > 0 ? '' : 'd-none'}>
           <div className="justify-content-center d-flex">
             <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
           </div>
@@ -249,4 +239,4 @@ export const JobRequest = () => {
   );
 };
 
-export default JobRequest;
+export default SanitizationReport;

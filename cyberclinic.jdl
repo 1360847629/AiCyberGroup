@@ -14,7 +14,9 @@ entity JobRequest {
   fileContent AnyBlob required
   score Integer,
   status Status required,
+  fileType FileType required,
   requestType RequestType required
+  priority Priority required
 }
 
 // New Entity
@@ -31,27 +33,72 @@ entity JobExecutionReport {
   executionLog TextBlob,
   status Status required
 }
-
+// New Entity
+entity SanitizationReport {
+  reportDate Instant required,
+  details TextBlob,
+  isSuccessful Boolean
+}
 enum Status {
-  PENDING, IN_PROGRESS, ERROR, COMPLETED
+  // Initial States
+  PENDING,
+  QUEUED,
+
+  // Security & Preparation
+  SANITIZING,
+  SANITIZED,
+  FAILED_SANITIZATION,
+
+  // Execution
+  IN_PROGRESS,
+  RETRYING,
+
+  // Final States
+  COMPLETED,
+  COMPLETED_WITH_WARNINGS,
+  ERROR,
+  CANCELLED
 }
 
 enum RequestType {
   BATCH, REALTIME, EMAIL
 }
+enum FileType {
+  // Standard Documents
+  PDF, DOCX, TXT, RTF,
+  // Data & Config
+  CSV, XLSX, JSON, XML, YAML, TOML,
 
+  // Security & Forensic Evidence
+  PCAP,      // Network packet captures
+  LOG,       // System/Application logs
+  EVTX,      // Windows Event logs
+  SQL,       // Database dumps/queries
 
+  // Executables & Scripts (High Risk - Needs Sanitization)
+  EXE, SH, BAT, PS1, BIN,
+
+  // Web & Code
+  HTML, MD, JAVA, PY, JS,
+  // Archives & Images
+  ZIP, TAR, GZ,
+  PNG, JPG, SVG
+}
+enum Priority {
+  LOW, MEDIUM, HIGH
+}
 relationship ManyToOne {
   JobRequest{user(login)} to User with builtInEntity
   JobReport{user(login)} to User with builtInEntity
   JobExecutionReport{user(login)} to User with builtInEntity
+  SanitizationReport{user(login)} to User with builtInEntity
 }
 
 // Added OneToOne Relationship
 relationship OneToOne {
   JobReport{jobRequest} to JobRequest
   JobExecutionReport{jobRequest} to JobRequest
-
+  SanitizationReport{jobRequest} to JobRequest
 }
 
 dto * with mapstruct

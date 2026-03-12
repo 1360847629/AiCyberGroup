@@ -1,34 +1,25 @@
 {
   "annotations": {
-    "changelogDate": "20260304202000"
+    "changelogDate": "20260312200655"
   },
   "applications": ["CyberClinic"],
   "dto": "mapstruct",
   "fields": [
     {
-      "fieldName": "startTime",
-      "fieldType": "Instant"
+      "fieldName": "reportDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "endTime",
-      "fieldType": "Instant"
-    },
-    {
-      "fieldName": "executionNode",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "executionLog",
+      "fieldName": "details",
       "fieldType": "TextBlob"
     },
     {
-      "fieldName": "status",
-      "fieldType": "Status",
-      "fieldValidateRules": ["required"],
-      "fieldValues": "PENDING,QUEUED,SANITIZING,SANITIZED,FAILED_SANITIZATION,IN_PROGRESS,RETRYING,COMPLETED,COMPLETED_WITH_WARNINGS,ERROR,CANCELLED"
+      "fieldName": "isSuccessful",
+      "fieldType": "Boolean"
     }
   ],
-  "name": "JobExecutionReport",
+  "name": "SanitizationReport",
   "pagination": "pagination",
   "relationships": [
     {
