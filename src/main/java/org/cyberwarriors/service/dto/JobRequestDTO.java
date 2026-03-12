@@ -4,6 +4,8 @@ import jakarta.persistence.Lob;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import org.cyberwarriors.domain.enumeration.FileType;
+import org.cyberwarriors.domain.enumeration.Priority;
 import org.cyberwarriors.domain.enumeration.RequestType;
 import org.cyberwarriors.domain.enumeration.Status;
 
@@ -26,7 +28,13 @@ public class JobRequestDTO implements Serializable {
     private Status status;
 
     @NotNull
+    private FileType fileType;
+
+    @NotNull
     private RequestType requestType;
+
+    @NotNull
+    private Priority priority;
 
     private UserDTO user;
 
@@ -70,12 +78,28 @@ public class JobRequestDTO implements Serializable {
         this.status = status;
     }
 
+    public FileType getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(FileType fileType) {
+        this.fileType = fileType;
+    }
+
     public RequestType getRequestType() {
         return requestType;
     }
 
     public void setRequestType(RequestType requestType) {
         this.requestType = requestType;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public UserDTO getUser() {
@@ -115,7 +139,9 @@ public class JobRequestDTO implements Serializable {
             ", fileContent='" + getFileContent() + "'" +
             ", score=" + getScore() +
             ", status='" + getStatus() + "'" +
+            ", fileType='" + getFileType() + "'" +
             ", requestType='" + getRequestType() + "'" +
+            ", priority='" + getPriority() + "'" +
             ", user=" + getUser() +
             "}";
     }

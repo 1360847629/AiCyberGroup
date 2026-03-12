@@ -21,10 +21,13 @@
       "fileContent": "File Content",
       "score": "Score",
       "status": "Status",
+      "fileType": "File Type",
       "requestType": "Request Type",
+      "priority": "Priority",
       "user": "User",
       "jobReport": "Job Report",
-      "jobExecutionReport": "Job Execution Report"
+      "jobExecutionReport": "Job Execution Report",
+      "sanitizationReport": "Sanitization Report"
     }
   }
 }

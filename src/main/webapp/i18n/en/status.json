@@ -3,9 +3,16 @@
     "Status": {
       "null": "",
       "PENDING": "PENDING",
+      "QUEUED": "QUEUED",
+      "SANITIZING": "SANITIZING",
+      "SANITIZED": "SANITIZED",
+      "FAILED_SANITIZATION": "FAILED_SANITIZATION",
       "IN_PROGRESS": "IN_PROGRESS",
+      "RETRYING": "RETRYING",
+      "COMPLETED": "COMPLETED",
+      "COMPLETED_WITH_WARNINGS": "COMPLETED_WITH_WARNINGS",
       "ERROR": "ERROR",
-      "COMPLETED": "COMPLETED"
+      "CANCELLED": "CANCELLED"
     }
   }
 }

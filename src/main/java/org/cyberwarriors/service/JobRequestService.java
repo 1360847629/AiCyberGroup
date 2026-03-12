@@ -128,6 +128,19 @@ public class JobRequestService {
     }
 
     /**
+     *  Get all the jobRequests where SanitizationReport is {@code null}.
+     *  @return the list of entities.
+     */
+    @Transactional(readOnly = true)
+    public List<JobRequestDTO> findAllWhereSanitizationReportIsNull() {
+        LOG.debug("Request to get all jobRequests where SanitizationReport is null");
+        return StreamSupport.stream(jobRequestRepository.findAll().spliterator(), false)
+            .filter(jobRequest -> jobRequest.getSanitizationReport() == null)
+            .map(jobRequestMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    /**
      * Get one jobRequest by id.
      *
      * @param id the id of the entity.

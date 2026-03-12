@@ -43,7 +43,7 @@ public class JobExecutionReport implements Serializable {
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @JsonIgnoreProperties(value = { "user", "jobReport", "jobExecutionReport" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "user", "jobReport", "jobExecutionReport", "sanitizationReport" }, allowSetters = true)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(unique = true)
     private JobRequest jobRequest;

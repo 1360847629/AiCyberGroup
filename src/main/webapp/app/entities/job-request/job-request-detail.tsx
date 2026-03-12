@@ -63,11 +63,23 @@ export const JobRequestDetail = () => {
           </dt>
           <dd>{jobRequestEntity.status}</dd>
           <dt>
+            <span id="fileType">
+              <Translate contentKey="cyberClinicApp.jobRequest.fileType">File Type</Translate>
+            </span>
+          </dt>
+          <dd>{jobRequestEntity.fileType}</dd>
+          <dt>
             <span id="requestType">
               <Translate contentKey="cyberClinicApp.jobRequest.requestType">Request Type</Translate>
             </span>
           </dt>
           <dd>{jobRequestEntity.requestType}</dd>
+          <dt>
+            <span id="priority">
+              <Translate contentKey="cyberClinicApp.jobRequest.priority">Priority</Translate>
+            </span>
+          </dt>
+          <dd>{jobRequestEntity.priority}</dd>
           <dt>
             <Translate contentKey="cyberClinicApp.jobRequest.user">User</Translate>
           </dt>

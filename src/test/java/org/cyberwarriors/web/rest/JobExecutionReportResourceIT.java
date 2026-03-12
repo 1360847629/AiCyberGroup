@@ -60,7 +60,7 @@ class JobExecutionReportResourceIT {
     private static final String UPDATED_EXECUTION_LOG = "BBBBBBBBBB";
 
     private static final Status DEFAULT_STATUS = Status.PENDING;
-    private static final Status UPDATED_STATUS = Status.IN_PROGRESS;
+    private static final Status UPDATED_STATUS = Status.QUEUED;
 
     private static final String ENTITY_API_URL = "/api/job-execution-reports";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";

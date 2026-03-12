@@ -16,6 +16,8 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import org.cyberwarriors.IntegrationTest;
 import org.cyberwarriors.domain.JobRequest;
+import org.cyberwarriors.domain.enumeration.FileType;
+import org.cyberwarriors.domain.enumeration.Priority;
 import org.cyberwarriors.domain.enumeration.RequestType;
 import org.cyberwarriors.domain.enumeration.Status;
 import org.cyberwarriors.repository.JobRequestRepository;
@@ -56,10 +58,16 @@ class JobRequestResourceIT {
     private static final Integer UPDATED_SCORE = 2;
 
     private static final Status DEFAULT_STATUS = Status.PENDING;
-    private static final Status UPDATED_STATUS = Status.IN_PROGRESS;
+    private static final Status UPDATED_STATUS = Status.QUEUED;
+
+    private static final FileType DEFAULT_FILE_TYPE = FileType.PDF;
+    private static final FileType UPDATED_FILE_TYPE = FileType.DOCX;
 
     private static final RequestType DEFAULT_REQUEST_TYPE = RequestType.BATCH;
     private static final RequestType UPDATED_REQUEST_TYPE = RequestType.REALTIME;
+
+    private static final Priority DEFAULT_PRIORITY = Priority.LOW;
+    private static final Priority UPDATED_PRIORITY = Priority.MEDIUM;
 
     private static final String ENTITY_API_URL = "/api/job-requests";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -107,7 +115,9 @@ class JobRequestResourceIT {
             .fileContentContentType(DEFAULT_FILE_CONTENT_CONTENT_TYPE)
             .score(DEFAULT_SCORE)
             .status(DEFAULT_STATUS)
-            .requestType(DEFAULT_REQUEST_TYPE);
+            .fileType(DEFAULT_FILE_TYPE)
+            .requestType(DEFAULT_REQUEST_TYPE)
+            .priority(DEFAULT_PRIORITY);
     }
 
     /**
@@ -122,7 +132,9 @@ class JobRequestResourceIT {
             .fileContentContentType(UPDATED_FILE_CONTENT_CONTENT_TYPE)
             .score(UPDATED_SCORE)
             .status(UPDATED_STATUS)
-            .requestType(UPDATED_REQUEST_TYPE);
+            .fileType(UPDATED_FILE_TYPE)
+            .requestType(UPDATED_REQUEST_TYPE)
+            .priority(UPDATED_PRIORITY);
     }
 
     @BeforeEach
@@ -199,10 +211,44 @@ class JobRequestResourceIT {
 
     @Test
     @Transactional
+    void checkFileTypeIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        jobRequest.setFileType(null);
+
+        // Create the JobRequest, which fails.
+        JobRequestDTO jobRequestDTO = jobRequestMapper.toDto(jobRequest);
+
+        restJobRequestMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(jobRequestDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void checkRequestTypeIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
         jobRequest.setRequestType(null);
+
+        // Create the JobRequest, which fails.
+        JobRequestDTO jobRequestDTO = jobRequestMapper.toDto(jobRequest);
+
+        restJobRequestMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(jobRequestDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkPriorityIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        jobRequest.setPriority(null);
 
         // Create the JobRequest, which fails.
         JobRequestDTO jobRequestDTO = jobRequestMapper.toDto(jobRequest);
@@ -230,7 +276,9 @@ class JobRequestResourceIT {
             .andExpect(jsonPath("$.[*].fileContent").value(hasItem(Base64.getEncoder().encodeToString(DEFAULT_FILE_CONTENT))))
             .andExpect(jsonPath("$.[*].score").value(hasItem(DEFAULT_SCORE)))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].requestType").value(hasItem(DEFAULT_REQUEST_TYPE.toString())));
+            .andExpect(jsonPath("$.[*].fileType").value(hasItem(DEFAULT_FILE_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].requestType").value(hasItem(DEFAULT_REQUEST_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].priority").value(hasItem(DEFAULT_PRIORITY.toString())));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -266,7 +314,9 @@ class JobRequestResourceIT {
             .andExpect(jsonPath("$.fileContent").value(Base64.getEncoder().encodeToString(DEFAULT_FILE_CONTENT)))
             .andExpect(jsonPath("$.score").value(DEFAULT_SCORE))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.requestType").value(DEFAULT_REQUEST_TYPE.toString()));
+            .andExpect(jsonPath("$.fileType").value(DEFAULT_FILE_TYPE.toString()))
+            .andExpect(jsonPath("$.requestType").value(DEFAULT_REQUEST_TYPE.toString()))
+            .andExpect(jsonPath("$.priority").value(DEFAULT_PRIORITY.toString()));
     }
 
     @Test
@@ -293,7 +343,9 @@ class JobRequestResourceIT {
             .fileContentContentType(UPDATED_FILE_CONTENT_CONTENT_TYPE)
             .score(UPDATED_SCORE)
             .status(UPDATED_STATUS)
-            .requestType(UPDATED_REQUEST_TYPE);
+            .fileType(UPDATED_FILE_TYPE)
+            .requestType(UPDATED_REQUEST_TYPE)
+            .priority(UPDATED_PRIORITY);
         JobRequestDTO jobRequestDTO = jobRequestMapper.toDto(updatedJobRequest);
 
         restJobRequestMockMvc
@@ -383,7 +435,7 @@ class JobRequestResourceIT {
         JobRequest partialUpdatedJobRequest = new JobRequest();
         partialUpdatedJobRequest.setId(jobRequest.getId());
 
-        partialUpdatedJobRequest.score(UPDATED_SCORE).requestType(UPDATED_REQUEST_TYPE);
+        partialUpdatedJobRequest.score(UPDATED_SCORE).fileType(UPDATED_FILE_TYPE).priority(UPDATED_PRIORITY);
 
         restJobRequestMockMvc
             .perform(
@@ -419,7 +471,9 @@ class JobRequestResourceIT {
             .fileContentContentType(UPDATED_FILE_CONTENT_CONTENT_TYPE)
             .score(UPDATED_SCORE)
             .status(UPDATED_STATUS)
-            .requestType(UPDATED_REQUEST_TYPE);
+            .fileType(UPDATED_FILE_TYPE)
+            .requestType(UPDATED_REQUEST_TYPE)
+            .priority(UPDATED_PRIORITY);
 
         restJobRequestMockMvc
             .perform(

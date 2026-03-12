@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.cyberwarriors.domain.JobExecutionReportTestSamples.*;
 import static org.cyberwarriors.domain.JobReportTestSamples.*;
 import static org.cyberwarriors.domain.JobRequestTestSamples.*;
+import static org.cyberwarriors.domain.SanitizationReportTestSamples.*;
 
 import org.cyberwarriors.web.rest.TestUtil;
 import org.junit.jupiter.api.Test;
@@ -50,5 +51,19 @@ class JobRequestTest {
         jobRequest.jobExecutionReport(null);
         assertThat(jobRequest.getJobExecutionReport()).isNull();
         assertThat(jobExecutionReportBack.getJobRequest()).isNull();
+    }
+
+    @Test
+    void sanitizationReportTest() {
+        JobRequest jobRequest = getJobRequestRandomSampleGenerator();
+        SanitizationReport sanitizationReportBack = getSanitizationReportRandomSampleGenerator();
+
+        jobRequest.setSanitizationReport(sanitizationReportBack);
+        assertThat(jobRequest.getSanitizationReport()).isEqualTo(sanitizationReportBack);
+        assertThat(sanitizationReportBack.getJobRequest()).isEqualTo(jobRequest);
+
+        jobRequest.sanitizationReport(null);
+        assertThat(jobRequest.getSanitizationReport()).isNull();
+        assertThat(sanitizationReportBack.getJobRequest()).isNull();
     }
 }
