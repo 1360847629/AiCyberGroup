@@ -69,6 +69,9 @@ class JobRequestResourceIT {
     private static final Priority DEFAULT_PRIORITY = Priority.LOW;
     private static final Priority UPDATED_PRIORITY = Priority.MEDIUM;
 
+    private static final String DEFAULT_FILE_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_FILE_NAME = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/job-requests";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -117,7 +120,8 @@ class JobRequestResourceIT {
             .status(DEFAULT_STATUS)
             .fileType(DEFAULT_FILE_TYPE)
             .requestType(DEFAULT_REQUEST_TYPE)
-            .priority(DEFAULT_PRIORITY);
+            .priority(DEFAULT_PRIORITY)
+            .fileName(DEFAULT_FILE_NAME);
     }
 
     /**
@@ -134,7 +138,8 @@ class JobRequestResourceIT {
             .status(UPDATED_STATUS)
             .fileType(UPDATED_FILE_TYPE)
             .requestType(UPDATED_REQUEST_TYPE)
-            .priority(UPDATED_PRIORITY);
+            .priority(UPDATED_PRIORITY)
+            .fileName(UPDATED_FILE_NAME);
     }
 
     @BeforeEach
@@ -278,7 +283,8 @@ class JobRequestResourceIT {
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].fileType").value(hasItem(DEFAULT_FILE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].requestType").value(hasItem(DEFAULT_REQUEST_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].priority").value(hasItem(DEFAULT_PRIORITY.toString())));
+            .andExpect(jsonPath("$.[*].priority").value(hasItem(DEFAULT_PRIORITY.toString())))
+            .andExpect(jsonPath("$.[*].fileName").value(hasItem(DEFAULT_FILE_NAME)));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -316,7 +322,8 @@ class JobRequestResourceIT {
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.fileType").value(DEFAULT_FILE_TYPE.toString()))
             .andExpect(jsonPath("$.requestType").value(DEFAULT_REQUEST_TYPE.toString()))
-            .andExpect(jsonPath("$.priority").value(DEFAULT_PRIORITY.toString()));
+            .andExpect(jsonPath("$.priority").value(DEFAULT_PRIORITY.toString()))
+            .andExpect(jsonPath("$.fileName").value(DEFAULT_FILE_NAME));
     }
 
     @Test
@@ -345,7 +352,8 @@ class JobRequestResourceIT {
             .status(UPDATED_STATUS)
             .fileType(UPDATED_FILE_TYPE)
             .requestType(UPDATED_REQUEST_TYPE)
-            .priority(UPDATED_PRIORITY);
+            .priority(UPDATED_PRIORITY)
+            .fileName(UPDATED_FILE_NAME);
         JobRequestDTO jobRequestDTO = jobRequestMapper.toDto(updatedJobRequest);
 
         restJobRequestMockMvc
@@ -435,7 +443,14 @@ class JobRequestResourceIT {
         JobRequest partialUpdatedJobRequest = new JobRequest();
         partialUpdatedJobRequest.setId(jobRequest.getId());
 
-        partialUpdatedJobRequest.score(UPDATED_SCORE).fileType(UPDATED_FILE_TYPE).priority(UPDATED_PRIORITY);
+        partialUpdatedJobRequest
+            .fileContent(UPDATED_FILE_CONTENT)
+            .fileContentContentType(UPDATED_FILE_CONTENT_CONTENT_TYPE)
+            .score(UPDATED_SCORE)
+            .fileType(UPDATED_FILE_TYPE)
+            .requestType(UPDATED_REQUEST_TYPE)
+            .priority(UPDATED_PRIORITY)
+            .fileName(UPDATED_FILE_NAME);
 
         restJobRequestMockMvc
             .perform(
@@ -473,7 +488,8 @@ class JobRequestResourceIT {
             .status(UPDATED_STATUS)
             .fileType(UPDATED_FILE_TYPE)
             .requestType(UPDATED_REQUEST_TYPE)
-            .priority(UPDATED_PRIORITY);
+            .priority(UPDATED_PRIORITY)
+            .fileName(UPDATED_FILE_NAME);
 
         restJobRequestMockMvc
             .perform(

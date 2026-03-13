@@ -179,6 +179,13 @@ export const JobRequestUpdate = () => {
                 ))}
               </ValidatedField>
               <ValidatedField
+                label={translate('cyberClinicApp.jobRequest.fileName')}
+                id="job-request-fileName"
+                name="fileName"
+                data-cy="fileName"
+                type="text"
+              />
+              <ValidatedField
                 id="job-request-user"
                 name="user"
                 data-cy="user"

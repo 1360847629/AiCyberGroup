@@ -35,6 +35,9 @@
             <column name="priority" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="file_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="user_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -66,6 +69,7 @@
             <column name="file_type" type="string"/>
             <column name="request_type" type="string"/>
             <column name="priority" type="string"/>
+            <column name="file_name" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

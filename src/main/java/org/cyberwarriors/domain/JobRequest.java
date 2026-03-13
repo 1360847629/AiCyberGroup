@@ -58,6 +58,9 @@ public class JobRequest implements Serializable {
     @Column(name = "priority", nullable = false)
     private Priority priority;
 
+    @Column(name = "file_name")
+    private String fileName;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
@@ -179,6 +182,19 @@ public class JobRequest implements Serializable {
         this.priority = priority;
     }
 
+    public String getFileName() {
+        return this.fileName;
+    }
+
+    public JobRequest fileName(String fileName) {
+        this.setFileName(fileName);
+        return this;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     public User getUser() {
         return this.user;
     }
@@ -280,6 +296,7 @@ public class JobRequest implements Serializable {
             ", fileType='" + getFileType() + "'" +
             ", requestType='" + getRequestType() + "'" +
             ", priority='" + getPriority() + "'" +
+            ", fileName='" + getFileName() + "'" +
             "}";
     }
 }

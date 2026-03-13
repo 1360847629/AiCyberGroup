@@ -24,6 +24,7 @@
       "fileType": "File Type",
       "requestType": "Request Type",
       "priority": "Priority",
+      "fileName": "File Name",
       "user": "User",
       "jobReport": "Job Report",
       "jobExecutionReport": "Job Execution Report",

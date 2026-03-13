@@ -36,6 +36,8 @@ public class JobRequestDTO implements Serializable {
     @NotNull
     private Priority priority;
 
+    private String fileName;
+
     private UserDTO user;
 
     public Long getId() {
@@ -102,6 +104,14 @@ public class JobRequestDTO implements Serializable {
         this.priority = priority;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     public UserDTO getUser() {
         return user;
     }
@@ -142,6 +152,7 @@ public class JobRequestDTO implements Serializable {
             ", fileType='" + getFileType() + "'" +
             ", requestType='" + getRequestType() + "'" +
             ", priority='" + getPriority() + "'" +
+            ", fileName='" + getFileName() + "'" +
             ", user=" + getUser() +
             "}";
     }

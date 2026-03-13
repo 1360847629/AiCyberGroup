@@ -344,6 +344,8 @@ class SanitizationReportResourceIT {
         SanitizationReport partialUpdatedSanitizationReport = new SanitizationReport();
         partialUpdatedSanitizationReport.setId(sanitizationReport.getId());
 
+        partialUpdatedSanitizationReport.details(UPDATED_DETAILS);
+
         restSanitizationReportMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedSanitizationReport.getId())
