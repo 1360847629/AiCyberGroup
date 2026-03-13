@@ -372,7 +372,7 @@ class JobExecutionReportResourceIT {
 
         partialUpdatedJobExecutionReport
             .startTime(UPDATED_START_TIME)
-            .endTime(UPDATED_END_TIME)
+            .executionNode(UPDATED_EXECUTION_NODE)
             .executionLog(UPDATED_EXECUTION_LOG)
             .status(UPDATED_STATUS);
 

@@ -341,7 +341,7 @@ class JobReportResourceIT {
         JobReport partialUpdatedJobReport = new JobReport();
         partialUpdatedJobReport.setId(jobReport.getId());
 
-        partialUpdatedJobReport.reportDate(UPDATED_REPORT_DATE).isSuccessful(UPDATED_IS_SUCCESSFUL);
+        partialUpdatedJobReport.isSuccessful(UPDATED_IS_SUCCESSFUL);
 
         restJobReportMockMvc
             .perform(

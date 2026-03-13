@@ -81,6 +81,12 @@ export const JobRequestDetail = () => {
           </dt>
           <dd>{jobRequestEntity.priority}</dd>
           <dt>
+            <span id="fileName">
+              <Translate contentKey="cyberClinicApp.jobRequest.fileName">File Name</Translate>
+            </span>
+          </dt>
+          <dd>{jobRequestEntity.fileName}</dd>
+          <dt>
             <Translate contentKey="cyberClinicApp.jobRequest.user">User</Translate>
           </dt>
           <dd>{jobRequestEntity.user ? jobRequestEntity.user.login : ''}</dd>

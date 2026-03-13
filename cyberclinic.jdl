@@ -11,6 +11,7 @@ application {
 }
 
 entity JobRequest {
+  fileName String required,
   fileContent AnyBlob required
   score Integer,
   status Status required,

@@ -137,6 +137,10 @@ export const JobRequest = () => {
                   <Translate contentKey="cyberClinicApp.jobRequest.priority">Priority</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('priority')} />
                 </th>
+                <th className="hand" onClick={sort('fileName')}>
+                  <Translate contentKey="cyberClinicApp.jobRequest.fileName">File Name</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('fileName')} />
+                </th>
                 <th>
                   <Translate contentKey="cyberClinicApp.jobRequest.user">User</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
@@ -179,6 +183,7 @@ export const JobRequest = () => {
                   <td>
                     <Translate contentKey={`cyberClinicApp.Priority.${jobRequest.priority}`} />
                   </td>
+                  <td>{jobRequest.fileName}</td>
                   <td>{jobRequest.user ? jobRequest.user.login : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

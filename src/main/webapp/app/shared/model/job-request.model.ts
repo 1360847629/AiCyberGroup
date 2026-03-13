@@ -13,6 +13,7 @@ export interface IJobRequest {
   fileType?: keyof typeof FileType;
   requestType?: keyof typeof RequestType;
   priority?: keyof typeof Priority;
+  fileName?: string | null;
   user?: IUser | null;
 }
 
