@@ -4,13 +4,20 @@ Main page styles
 
 body {
   background-color: #132531;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
 }
 
 .home-page {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  max-width: 100%;
   background-color: #132531;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* Header Section */
@@ -276,6 +283,11 @@ body {
 /* Link Styling */
 a {
   color: #fa4616;
+}
+
+/* Footer */
+footer {
+  background-color: #132531;
 }
 
 /* Responsive Design */

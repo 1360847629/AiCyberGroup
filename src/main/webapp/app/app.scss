@@ -130,6 +130,12 @@ Generic styles
   white-space: pre-wrap;
 }
 
+/* Margin Styling*/
+.margin-card {
+  background-color: #132531;
+  border: 0;
+}
+
 /* padding helpers */
 
 @mixin pad($size, $side) {
