@@ -10,8 +10,7 @@
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
         "jobRequest": "Job Request",
         "jobReport": "Job Report",
-        "jobExecutionReport": "Job Execution Report",
-        "sanitizationReport": "Sanitization Report"
+        "jobExecutionReport": "Job Execution Report"
       },
       "account": {
         "main": "Account",
@@ -147,5 +146,11 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "This is your footer"
+  "footer": {
+    "about": "About Cyber AI Group",
+    "description": "Leading the future of cybersecurity through artificial intelligence and innovative solutions.",
+    "follow": "Follow Us",
+    "sponsors": "Sponsored By",
+    "copyright": "© 2026 Cyber AI Group. All rights reserved."
+  }
 }
