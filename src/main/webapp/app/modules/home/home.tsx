@@ -17,14 +17,11 @@ export const Home = () => {
           <Row className="align-items-center">
             <Col md="6">
               <h1 className="header-title">
-                <Translate contentKey="home.title">Welcome, Cyber Ai Group!</Translate>
+                <Translate contentKey="home.title">Welcome To Cyber AI Group!</Translate>
               </h1>
               <p className="header-subtitle">
-                <Translate contentKey="home.subtitle">Where Cyber AI meets innovation</Translate>
+                <Translate contentKey="home.subtitle">Where Cyber AI Meets Innovation</Translate>
               </p>
-            </Col>
-            <Col md="3">
-              <span className="hipster rounded" />
             </Col>
             <Col md="3" className="header-sponsor-inline">
               <a href="https://lillyendowment.org/" target="_blank" rel="noopener noreferrer" className="header-sponsor-link">
@@ -38,17 +35,19 @@ export const Home = () => {
       {/* Mission Statement Section */}
       <section className="mission-section">
         <Container>
-          <div className="mission-card">
-            <h2 className="mission-title">
-              <Translate contentKey="home.mission-title">Our Mission</Translate>
-            </h2>
-            <p className="mission-statement">
-              <Translate contentKey="home.mission-statement">
-                To empower cybersecurity professionals and organizations through cutting-edge AI technologies, innovative solutions, and
-                comprehensive training. We are dedicated to advancing the cybersecurity landscape by combining artificial intelligence with
-                expert knowledge to create safer digital environments.
-              </Translate>
-            </p>
+          <div className="mission-grad">
+            <div className="mission-card">
+              <h2 className="mission-title">
+                <Translate contentKey="home.mission-title">Our Mission</Translate>
+              </h2>
+              <p className="mission-statement">
+                <Translate contentKey="home.mission-statement">
+                  To empower cybersecurity professionals and organizations through cutting-edge AI technologies, innovative solutions, and
+                  comprehensive training. We are dedicated to advancing the cybersecurity landscape by combining artificial intelligence
+                  with expert knowledge to create safer digital environments.
+                </Translate>
+              </p>
+            </div>
           </div>
         </Container>
       </section>

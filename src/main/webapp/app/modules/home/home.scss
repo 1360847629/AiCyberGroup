@@ -2,15 +2,20 @@
 Main page styles
 ========================================================================== */
 
+body {
+  background-color: #132531;
+}
+
 .home-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #132531;
 }
 
 /* Header Section */
 .home-header {
-  background: linear-gradient(135deg, #fa4616 0%, #fa4616 100%);
+  background: linear-gradient(135deg, #fa4616 0%, #132531 100%);
   color: white;
   padding: 60px 0;
   margin-bottom: 40px;
@@ -20,11 +25,11 @@ Main page styles
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
   }
 
   .header-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 0;
     opacity: 0.95;
@@ -59,10 +64,9 @@ Main page styles
 
 /* Mission Section */
 .mission-section {
-  background-color: #f8f9fa;
+  background-color: #132531;
   padding: 50px 0;
   margin-bottom: 40px;
-
   .mission-card {
     background: white;
     border-left: 5px solid #fa4616;
@@ -78,9 +82,64 @@ Main page styles
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
   }
+}
+
+/*.mission-grad {
+    width: 100%;
+    height: 400px;
+    border: 0;
+    padding: 40px;
+    border-radius: 8px;
+    background: repeating-conic-gradient(from var(--angle),#fa4616 0%, #fa4616 5%, transparent 5%, transparent 40%, #fa4616 50%);
+    animation: animate 4s linear infinite;
+    z-index: -1;
+    cursor: pointer;*/
+/*transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;*/
+
+/*&:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px white;
+    }*/
+/*}*/
+
+/* Conic Gradient Animation */
+/*@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+  }
+  @keyframes animate {
+    0% {
+      --angle: 0deg;
+    }
+    100% {
+      --angle: 360deg;
+    }
+  }
+
+  .mission-grad::before {
+    content: '';
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(from var(--angle),#246C99 0%, #246C99 5%, transparent 5%, transparent 40%, #246C99 50%);
+    animation-delay: -1s;
+    border-radius: 8px;
+  }
+
+  .mission-grad::after {
+    content: '';
+    position: relative;
+    inset: 8px;
+    background: #132531;
+    border-radius: 8px;
+    border: 8px solid rgba (19, 37, 49, 0.3);
+  }
 
   .mission-title {
-    color: #fa4616;
+    color: #132531;
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 20px;
@@ -89,7 +148,7 @@ Main page styles
   }
 
   .mission-statement {
-    color: #555;
+    color: black;
     font-size: 1.1rem;
     line-height: 1.8;
     margin: 0;
@@ -97,17 +156,25 @@ Main page styles
   }
 }
 
+
 /* Artificial Intelligence Section */
 .AI-section {
-  background-color: #1d384b;
+  background-image: url('/content/images/AI-bg.jpg');
+  background-position: center;
+  background-size: cover;
   padding: 50px 0;
   margin-bottom: 40px;
 
   .AI-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.027);
     border-radius: 8px;
+    border: 1px solid rgba (255, 255, 255, 0.3);
     padding: 30px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
@@ -117,7 +184,7 @@ Main page styles
     }
 
     .AI-title {
-      color: #1d384b;
+      color: #fa4616;
       font-size: 1.8rem;
       font-weight: bold;
       margin-bottom: 20px;
@@ -126,7 +193,7 @@ Main page styles
     }
 
     .AI-description {
-      color: black;
+      color: white;
       font-size: 1.1rem;
       line-height: 1.8;
       margin: 0;
@@ -137,15 +204,27 @@ Main page styles
 
 /* Cyber Section */
 .cyber-section {
-  background-color: #246c99;
+  width: 100%;
+  height: 400px;
+  background-image: url('/content/images/cyber-bg.jpg');
+  background-position: center;
+  background-size: cover;
   padding: 50px 0;
   margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
 
   .cyber-card {
-    background: white;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.027);
+    border-radius: 16px;
+    border: 1px solid rgba (255, 255, 255, 0.3);
     padding: 30px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    justify-content: center;
+    cursor: pointer;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
@@ -155,7 +234,7 @@ Main page styles
     }
 
     .cyber-title {
-      color: #246c99;
+      color: #fa4616;
       font-size: 1.8rem;
       font-weight: bold;
       margin-bottom: 20px;
@@ -164,7 +243,7 @@ Main page styles
     }
 
     .cyber-description {
-      color: black;
+      color: white;
       font-size: 1.1rem;
       line-height: 1.8;
       margin: 0;
@@ -176,8 +255,8 @@ Main page styles
 /* Main Content */
 .main-content {
   flex: 1;
-  padding: 20px 0;
-  margin-bottom: 40px;
+  padding: 10px 0;
+  margin-bottom: 20px;
 }
 
 /* Hipster Image */
@@ -187,6 +266,16 @@ Main page styles
   max-height: 400px;
   background: url('/content/images/jhipster_family_member_1.svg') no-repeat center top;
   background-size: contain;
+}
+
+/* Questions Section */
+.questions-section {
+  color: #ffffff;
+}
+
+/* Link Styling */
+a {
+  color: #fa4616;
 }
 
 /* Responsive Design */
