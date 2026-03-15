@@ -77,7 +77,7 @@ export const JobRequestUpdate = () => {
       ? {}
       : {
           status: 'PENDING',
-          fileType: 'PDF',
+          fileType: 'LOG',
           requestType: 'BATCH',
           priority: 'LOW',
           ...jobRequestEntity,

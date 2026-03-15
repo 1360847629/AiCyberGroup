@@ -1,61 +1,13 @@
 export enum FileType {
-  PDF = 'PDF',
-
-  DOCX = 'DOCX',
-
   TXT = 'TXT',
-
-  RTF = 'RTF',
-
-  CSV = 'CSV',
-
-  XLSX = 'XLSX',
-
-  JSON = 'JSON',
-
-  XML = 'XML',
-
-  YAML = 'YAML',
-
-  TOML = 'TOML',
-
   PCAP = 'PCAP',
-
+  PCAPNG = 'PCAPNG',
+  CAP = 'CAP',
+  JSON = 'JSON',
+  CSV = 'CSV',
   LOG = 'LOG',
-
   EVTX = 'EVTX',
-
-  SQL = 'SQL',
-
-  EXE = 'EXE',
-
-  SH = 'SH',
-
-  BAT = 'BAT',
-
-  PS1 = 'PS1',
-
-  BIN = 'BIN',
-
-  HTML = 'HTML',
-
-  MD = 'MD',
-
-  JAVA = 'JAVA',
-
-  PY = 'PY',
-
-  JS = 'JS',
-
-  ZIP = 'ZIP',
-
-  TAR = 'TAR',
-
-  GZ = 'GZ',
-
-  PNG = 'PNG',
-
-  JPG = 'JPG',
-
-  SVG = 'SVG',
+  PARQUET = 'PARQUET',
+  AVRO = 'AVRO',
+  NFCAPD = 'NFCAPD',
 }

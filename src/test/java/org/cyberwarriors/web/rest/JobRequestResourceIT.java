@@ -60,8 +60,8 @@ class JobRequestResourceIT {
     private static final Status DEFAULT_STATUS = Status.PENDING;
     private static final Status UPDATED_STATUS = Status.QUEUED;
 
-    private static final FileType DEFAULT_FILE_TYPE = FileType.PDF;
-    private static final FileType UPDATED_FILE_TYPE = FileType.DOCX;
+    private static final FileType DEFAULT_FILE_TYPE = FileType.LOG;
+    private static final FileType UPDATED_FILE_TYPE = FileType.TXT;
 
     private static final RequestType DEFAULT_REQUEST_TYPE = RequestType.BATCH;
     private static final RequestType UPDATED_REQUEST_TYPE = RequestType.REALTIME;

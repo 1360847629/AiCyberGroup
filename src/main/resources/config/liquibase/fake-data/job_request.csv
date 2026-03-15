@@ -1,11 +1,11 @@
 id;file_content;file_content_content_type;score;status;file_type;request_type;priority;file_name
-1;../fake-data/blob/hipster.png;image/png;13234;FAILED_SANITIZATION;YAML;EMAIL;LOW;hoarse boohoo furthermore
-2;../fake-data/blob/hipster.png;image/png;15665;QUEUED;JS;BATCH;HIGH;yet prohibition more
-3;../fake-data/blob/hipster.png;image/png;17115;COMPLETED;EVTX;REALTIME;LOW;like for attest
-4;../fake-data/blob/hipster.png;image/png;7357;COMPLETED;PDF;EMAIL;MEDIUM;silt perfectly against
-5;../fake-data/blob/hipster.png;image/png;31024;COMPLETED_WITH_WARNINGS;GZ;REALTIME;LOW;during flood successfully
-6;../fake-data/blob/hipster.png;image/png;9647;SANITIZING;GZ;EMAIL;LOW;astride
-7;../fake-data/blob/hipster.png;image/png;18472;COMPLETED_WITH_WARNINGS;TXT;EMAIL;HIGH;sedately ha infamous
-8;../fake-data/blob/hipster.png;image/png;14079;SANITIZED;BAT;REALTIME;LOW;comb
-9;../fake-data/blob/hipster.png;image/png;11929;PENDING;PCAP;EMAIL;MEDIUM;sesame owlishly through
-10;../fake-data/blob/hipster.png;image/png;28198;RETRYING;YAML;EMAIL;HIGH;beneath
+1;../fake-data/blob/hipster.csv;text/plain;13234;FAILED_SANITIZATION;TXT;EMAIL;LOW;hoarse boohoo furthermore
+2;../fake-data/blob/hipster.csv;text/plain;15665;QUEUED;TXT;BATCH;HIGH;yet prohibition more
+3;../fake-data/blob/hipster.csv;text/plain;17115;COMPLETED;TXT;REALTIME;LOW;like for attest
+4;../fake-data/blob/hipster.csv;text/plain;7357;COMPLETED;TXT;EMAIL;MEDIUM;silt perfectly against
+5;../fake-data/blob/hipster.csv;text/plain;31024;COMPLETED_WITH_WARNINGS;LOG;REALTIME;LOW;during flood successfully
+6;../fake-data/blob/hipster.csv;text/plain;9647;SANITIZING;CSV;EMAIL;LOW;astride
+7;../fake-data/blob/hipster.csv;text/plain;18472;COMPLETED_WITH_WARNINGS;TXT;EMAIL;HIGH;sedately ha infamous
+8;../fake-data/blob/hipster.csv;text/plain;14079;SANITIZED;CSV;REALTIME;LOW;comb
+9;../fake-data/blob/hipster.csv;text/plain;11929;PENDING;CSV;EMAIL;MEDIUM;sesame owlishly through
+10;../fake-data/blob/hipster.csv;text/plain;28198;RETRYING;TXT;EMAIL;HIGH;beneath

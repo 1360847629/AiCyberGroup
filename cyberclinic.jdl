@@ -65,25 +65,16 @@ enum RequestType {
   BATCH, REALTIME, EMAIL
 }
 enum FileType {
-  // Standard Documents
-  PDF, DOCX, TXT, RTF,
-  // Data & Config
-  CSV, XLSX, JSON, XML, YAML, TOML,
-
-  // Security & Forensic Evidence
-  PCAP,      // Network packet captures
-  LOG,       // System/Application logs
-  EVTX,      // Windows Event logs
-  SQL,       // Database dumps/queries
-
-  // Executables & Scripts (High Risk - Needs Sanitization)
-  EXE, SH, BAT, PS1, BIN,
-
-  // Web & Code
-  HTML, MD, JAVA, PY, JS,
-  // Archives & Images
-  ZIP, TAR, GZ,
-  PNG, JPG, SVG
+    PCAP,
+    PCAPNG,
+    CAP,
+    JSON,
+    CSV,
+    LOG,
+    EVTX,
+    PARQUET,
+    AVRO,
+    NFCAPD
 }
 enum Priority {
   LOW, MEDIUM, HIGH
