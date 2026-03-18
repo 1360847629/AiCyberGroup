@@ -146,10 +146,12 @@ public class JobRequestResource {
      */
     @GetMapping("")
     public ResponseEntity<List<JobRequestDTO>> getAllJobRequests(
+        @RequestParam(name = "userId", required = false) Integer userId,
         @org.springdoc.core.annotations.ParameterObject Pageable pageable,
         @RequestParam(name = "filter", required = false) String filter,
         @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
     ) {
+        LOG.debug("REST request to get a page of JobRequests for user : {}", userId);
         if ("jobreport-is-null".equals(filter)) {
             LOG.debug("REST request to get all JobRequests where jobReport is null");
             return new ResponseEntity<>(jobRequestService.findAllWhereJobReportIsNull(), HttpStatus.OK);
