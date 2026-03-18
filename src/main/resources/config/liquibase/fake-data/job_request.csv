@@ -1,9 +1,9 @@
 id;file_content;file_content_content_type;score;status;file_type;request_type;priority;file_name
-1;../fake-data/blob/hipster.csv;text/plain;13234;FAILED_SANITIZATION;TXT;EMAIL;LOW;hoarse boohoo furthermore
-2;../fake-data/blob/hipster.csv;text/plain;15665;QUEUED;TXT;BATCH;HIGH;yet prohibition more
-3;../fake-data/blob/hipster.csv;text/plain;17115;COMPLETED;TXT;REALTIME;LOW;like for attest
-4;../fake-data/blob/hipster.csv;text/plain;7357;COMPLETED;TXT;EMAIL;MEDIUM;silt perfectly against
-5;../fake-data/blob/hipster.csv;text/plain;31024;COMPLETED_WITH_WARNINGS;LOG;REALTIME;LOW;during flood successfully
+1;../fake-data/blob/2-csv-20260316221533.csv;text/csv;13234;FAILED_SANITIZATION;CSV;EMAIL;LOW;hoarse boohoo furthermore
+2;../fake-data/blob/2-json-20260316221602.json;text/json;15665;QUEUED;JSON;BATCH;HIGH;yet prohibition more
+3;../fake-data/blob/2-log-20260316221447.logtmp;text/plain;17115;COMPLETED;LOG;REALTIME;LOW;like for attest
+4;../fake-data/blob/2-pcapng-20260316221636.pcapng;application/x-pcapng;7357;COMPLETED;PCAPNG;EMAIL;MEDIUM;silt perfectly against
+5;../fake-data/blob/2-evtx-20260316221712.evtx;application/octet-stream;31024;COMPLETED_WITH_WARNINGS;EVTX;REALTIME;LOW;during flood successfully
 6;../fake-data/blob/hipster.csv;text/plain;9647;SANITIZING;CSV;EMAIL;LOW;astride
 7;../fake-data/blob/hipster.csv;text/plain;18472;COMPLETED_WITH_WARNINGS;TXT;EMAIL;HIGH;sedately ha infamous
 8;../fake-data/blob/hipster.csv;text/plain;14079;SANITIZED;CSV;REALTIME;LOW;comb
