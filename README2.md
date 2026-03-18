@@ -215,6 +215,12 @@ Or build a arm64 Docker image when using an arm64 processor os like MacOS with M
 npm run java:docker:arm64
 ```
 
+rebuild the front end after git pull
+
+```sh
+npm run webapp:build
+```
+
 Then run:
 
 ```sh

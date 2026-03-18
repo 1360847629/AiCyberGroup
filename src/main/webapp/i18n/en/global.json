@@ -10,7 +10,8 @@
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
         "jobRequest": "Job Request",
         "jobReport": "Job Report",
-        "jobExecutionReport": "Job Execution Report"
+        "jobExecutionReport": "Job Execution Report",
+        "sanitizationReport": "Sanitization Report"
       },
       "account": {
         "main": "Account",
