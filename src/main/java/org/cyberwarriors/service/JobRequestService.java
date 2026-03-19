@@ -161,4 +161,9 @@ public class JobRequestService {
         LOG.debug("Request to delete JobRequest : {}", id);
         jobRequestRepository.deleteById(id);
     }
+
+    @Transactional(readOnly = true)
+    public Page<JobRequestDTO> findAllByUserId(Integer userId, Pageable pageable) {
+        return jobRequestRepository.findAllByUserId(userId, pageable).map(jobRequestMapper::toDto);
+    }
 }

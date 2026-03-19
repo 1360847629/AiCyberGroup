@@ -52,7 +52,9 @@ public class JobRequestResource {
      * {@code POST  /job-requests} : Create a new jobRequest.
      *
      * @param jobRequestDTO the jobRequestDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new jobRequestDTO, or with status {@code 400 (Bad Request)} if the jobRequest has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new jobRequestDTO, or with status {@code 400 (Bad Request)}
+     *         if the jobRequest has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("")
@@ -70,11 +72,13 @@ public class JobRequestResource {
     /**
      * {@code PUT  /job-requests/:id} : Updates an existing jobRequest.
      *
-     * @param id the id of the jobRequestDTO to save.
+     * @param id            the id of the jobRequestDTO to save.
      * @param jobRequestDTO the jobRequestDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated jobRequestDTO,
-     * or with status {@code 400 (Bad Request)} if the jobRequestDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the jobRequestDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated jobRequestDTO, or with status {@code 400 (Bad Request)}
+     *         if the jobRequestDTO is not valid, or with status
+     *         {@code 500 (Internal Server Error)} if the jobRequestDTO couldn't be
+     *         updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{id}")
@@ -101,14 +105,17 @@ public class JobRequestResource {
     }
 
     /**
-     * {@code PATCH  /job-requests/:id} : Partial updates given fields of an existing jobRequest, field will ignore if it is null
+     * {@code PATCH  /job-requests/:id} : Partial updates given fields of an
+     * existing jobRequest, field will ignore if it is null
      *
-     * @param id the id of the jobRequestDTO to save.
+     * @param id            the id of the jobRequestDTO to save.
      * @param jobRequestDTO the jobRequestDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated jobRequestDTO,
-     * or with status {@code 400 (Bad Request)} if the jobRequestDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the jobRequestDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the jobRequestDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated jobRequestDTO, or with status {@code 400 (Bad Request)}
+     *         if the jobRequestDTO is not valid, or with status
+     *         {@code 404 (Not Found)} if the jobRequestDTO is not found, or with
+     *         status {@code 500 (Internal Server Error)} if the jobRequestDTO
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -139,10 +146,12 @@ public class JobRequestResource {
     /**
      * {@code GET  /job-requests} : get all the jobRequests.
      *
-     * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
-     * @param filter the filter of the request.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of jobRequests in body.
+     * @param pageable  the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * @param filter    the filter of the request.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of jobRequests in body.
      */
     @GetMapping("")
     public ResponseEntity<List<JobRequestDTO>> getAllJobRequests(
@@ -168,11 +177,15 @@ public class JobRequestResource {
         }
         LOG.debug("REST request to get a page of JobRequests");
         Page<JobRequestDTO> page;
+
         if (eagerload) {
-            page = jobRequestService.findAllWithEagerRelationships(pageable);
+            if (userId != null) {
+                page = jobRequestService.findAllByUserId(userId, pageable);
+            } else page = jobRequestService.findAllWithEagerRelationships(pageable);
         } else {
             page = jobRequestService.findAll(pageable);
         }
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -181,7 +194,8 @@ public class JobRequestResource {
      * {@code GET  /job-requests/:id} : get the "id" jobRequest.
      *
      * @param id the id of the jobRequestDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the jobRequestDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the jobRequestDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{id}")
     public ResponseEntity<JobRequestDTO> getJobRequest(@PathVariable("id") Long id) {

@@ -40,4 +40,6 @@ public interface JobRequestRepository extends JpaRepository<JobRequest, Long> {
 
     @Query("select jobRequest from JobRequest jobRequest left join fetch jobRequest.user where jobRequest.id =:id")
     Optional<JobRequest> findOneWithToOneRelationships(@Param("id") Long id);
+
+    Page<JobRequest> findAllByUserId(Integer userId, Pageable pageable);
 }
