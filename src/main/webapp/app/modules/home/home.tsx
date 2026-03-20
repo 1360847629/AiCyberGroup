@@ -9,6 +9,9 @@ import CyberHeader from './cyber-header';
 import MissionHeader from './mission-header';
 import { useAppSelector } from 'app/config/store';
 import { JobRequest } from 'app/entities/job-request/job-request';
+import { JobExecutionReport } from 'app/entities/job-execution-report/job-execution-report';
+import { JobReport } from 'app/entities/job-report/job-report';
+import { SanitizationReport } from 'app/entities/sanitization-report/sanitization-report';
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
 
@@ -43,6 +46,9 @@ export const Home = () => {
               </Alert>
 
               <JobRequest />
+              <SanitizationReport />
+              <JobExecutionReport />
+              <JobReport />
             </div>
           )}
         </Container>
