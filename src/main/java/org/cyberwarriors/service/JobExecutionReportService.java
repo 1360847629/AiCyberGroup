@@ -121,4 +121,9 @@ public class JobExecutionReportService {
         LOG.debug("Request to delete JobExecutionReport : {}", id);
         jobExecutionReportRepository.deleteById(id);
     }
+
+    @Transactional(readOnly = true)
+    public Page<JobExecutionReportDTO> findAllByUserId(Integer userId, Pageable pageable) {
+        return jobExecutionReportRepository.findAllByUserId(userId, pageable).map(jobExecutionReportMapper::toDto);
+    }
 }

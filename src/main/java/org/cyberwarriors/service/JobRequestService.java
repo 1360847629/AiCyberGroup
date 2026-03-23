@@ -102,8 +102,9 @@ public class JobRequestService {
     }
 
     /**
-     *  Get all the jobRequests where JobReport is {@code null}.
-     *  @return the list of entities.
+     * Get all the jobRequests where JobReport is {@code null}.
+     *
+     * @return the list of entities.
      */
     @Transactional(readOnly = true)
     public List<JobRequestDTO> findAllWhereJobReportIsNull() {
@@ -115,8 +116,9 @@ public class JobRequestService {
     }
 
     /**
-     *  Get all the jobRequests where JobExecutionReport is {@code null}.
-     *  @return the list of entities.
+     * Get all the jobRequests where JobExecutionReport is {@code null}.
+     *
+     * @return the list of entities.
      */
     @Transactional(readOnly = true)
     public List<JobRequestDTO> findAllWhereJobExecutionReportIsNull() {
@@ -128,8 +130,9 @@ public class JobRequestService {
     }
 
     /**
-     *  Get all the jobRequests where SanitizationReport is {@code null}.
-     *  @return the list of entities.
+     * Get all the jobRequests where SanitizationReport is {@code null}.
+     *
+     * @return the list of entities.
      */
     @Transactional(readOnly = true)
     public List<JobRequestDTO> findAllWhereSanitizationReportIsNull() {

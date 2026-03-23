@@ -2,60 +2,34 @@ import './footer.scss';
 
 import React from 'react';
 import { Translate } from 'react-jhipster';
-import { Col, Row, Container } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faCode, faLink } from '@fortawesome/free-solid-svg-icons';
+
+const bottomLinks = [
+  { href: 'https://indianatech.edu', label: 'Indiana Tech', icon: '/content/images/it_logo.svg' },
+  { href: 'https://techcyberwarriors.org', label: 'Cyber Warriors', icon: '/content/images/shield.svg' },
+  { href: 'https://lillyendowment.org', label: 'Lilly Endowment', icon: '/content/images/lilly.svg' },
+];
 
 const Footer = () => (
   <footer className="app-footer">
-    <Container>
-      <Row className="footer-content">
-        <Col md="4" className="footer-info">
-          <h5>
-            <Translate contentKey="footer.about">About Cyber AI Group</Translate>
-          </h5>
-          <p>
-            <Translate contentKey="footer.description">
-              Leading the future of cybersecurity through artificial intelligence and innovative solutions.
-            </Translate>
-          </p>
-        </Col>
-        <Col md="4" className="footer-social">
-          <h5>
-            <Translate contentKey="footer.follow">Follow Us</Translate>
-          </h5>
-          <div className="social-icons">
-            <a href="https://www.indianatech.edu" target="_blank" rel="noopener noreferrer" className="social-icon" title="Homepage">
-              <FontAwesomeIcon icon={faHome} />
-            </a>
-            <a
-              href="https://github.com/davidlislc/AiCyberGroup"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon"
-              title="GitHub"
-            >
-              <FontAwesomeIcon icon={faCode} />
-            </a>
-            <a href="https://twitter.com/AICyber" target="_blank" rel="noopener noreferrer" className="social-icon" title="Twitter">
-              <FontAwesomeIcon icon={faLink} />
-            </a>
-          </div>
-        </Col>
-        <Col md="4" className="footer-sponsors">
-          <a href="https://lillyendowment.org/" target="_blank" rel="noopener noreferrer" className="sponsor-link">
-            <img src="/content/images/lily_logo.jpg" alt="Sponsor Logo" className="sponsor-logo" />
-          </a>
-        </Col>
-      </Row>
-      <Row className="footer-bottom">
-        <Col md="12" className="text-center">
-          <p>
-            <Translate contentKey="footer.copyright">© 2026 Cyber AI Group. All rights reserved.</Translate>
-          </p>
-        </Col>
-      </Row>
-    </Container>
+    <div className="footer-partners">
+      {bottomLinks.map(({ href, label, icon }) => (
+        <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="partner-link">
+          <img src={icon} alt="" className="partner-icon" /> {label}
+        </a>
+      ))}
+    </div>
+    <div className="footer-bottom">
+      <div className="footer-brand">
+        <img src="/content/images/it_logo.svg" alt="Logo" className="footer-brand-logo" />
+        <span>CyberAI</span>
+      </div>
+      <span className="footer-copyright">
+        <Translate contentKey="footer.copyright">&copy; 2026 Cyber AI Group. All Rights Reserved</Translate>
+      </span>
+      <a href="https://lillyendowment.org" target="_blank" rel="noopener noreferrer" className="footer-sponsor-link">
+        <img src="/content/images/lily_logo.jpg" alt="Lilly Endowment" className="footer-sponsor-logo" />
+      </a>
+    </div>
   </footer>
 );
 

@@ -5,7 +5,8 @@ import java.util.Optional;
 import org.cyberwarriors.domain.JobExecutionReport;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -44,4 +45,6 @@ public interface JobExecutionReportRepository extends JpaRepository<JobExecution
         "select jobExecutionReport from JobExecutionReport jobExecutionReport left join fetch jobExecutionReport.user where jobExecutionReport.id =:id"
     )
     Optional<JobExecutionReport> findOneWithToOneRelationships(@Param("id") Long id);
+
+    Page<JobExecutionReport> findAllByUserId(Integer userId, Pageable pageable);
 }

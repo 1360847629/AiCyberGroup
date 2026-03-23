@@ -13,6 +13,7 @@ import org.cyberwarriors.service.dto.SanitizationReportDTO;
 import org.cyberwarriors.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -73,7 +74,7 @@ public class SanitizationReportResource {
     /**
      * {@code PUT  /sanitization-reports/:id} : Updates an existing sanitizationReport.
      *
-     * @param id the id of the sanitizationReportDTO to save.
+     * @param id                    the id of the sanitizationReportDTO to save.
      * @param sanitizationReportDTO the sanitizationReportDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated sanitizationReportDTO,
      * or with status {@code 400 (Bad Request)} if the sanitizationReportDTO is not valid,
@@ -106,12 +107,14 @@ public class SanitizationReportResource {
     /**
      * {@code PATCH  /sanitization-reports/:id} : Partial updates given fields of an existing sanitizationReport, field will ignore if it is null
      *
-     * @param id the id of the sanitizationReportDTO to save.
+     * @param id                    the id of the sanitizationReportDTO to save.
      * @param sanitizationReportDTO the sanitizationReportDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated sanitizationReportDTO,
-     * or with status {@code 400 (Bad Request)} if the sanitizationReportDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the sanitizationReportDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the sanitizationReportDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     * the updated sanitizationReportDTO, or with status {@code 400 (Bad Request)}
+     * if the sanitizationReportDTO is not valid, or with status
+     * {@code 404 (Not Found)} if the sanitizationReportDTO is not found, or with
+     * status {@code 500 (Internal Server Error)} if the sanitizationReportDTO
+     * couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -142,18 +145,26 @@ public class SanitizationReportResource {
     /**
      * {@code GET  /sanitization-reports} : get all the sanitizationReports.
      *
-     * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of sanitizationReports in body.
+     * @param pageable  the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * @param filter    the filter of the request.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     * of sanitizationReports in body.
      */
     @GetMapping("")
     public ResponseEntity<List<SanitizationReportDTO>> getAllSanitizationReports(
-        @org.springdoc.core.annotations.ParameterObject Pageable pageable,
+        @RequestParam(name = "userId", required = false) Integer userId,
+        @ParameterObject Pageable pageable,
+        @RequestParam(name = "filter", required = false) String filter,
         @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
     ) {
         LOG.debug("REST request to get a page of SanitizationReports");
         Page<SanitizationReportDTO> page;
         if (eagerload) {
+            if (userId != null) {
+                page = sanitizationReportService.findAllByUserId(userId, pageable);
+            }
             page = sanitizationReportService.findAllWithEagerRelationships(pageable);
         } else {
             page = sanitizationReportService.findAll(pageable);
@@ -166,7 +177,8 @@ public class SanitizationReportResource {
      * {@code GET  /sanitization-reports/:id} : get the "id" sanitizationReport.
      *
      * @param id the id of the sanitizationReportDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the sanitizationReportDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     * the sanitizationReportDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{id}")
     public ResponseEntity<SanitizationReportDTO> getSanitizationReport(@PathVariable("id") Long id) {
