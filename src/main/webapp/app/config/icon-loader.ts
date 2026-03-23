@@ -32,6 +32,10 @@ import {
   faUsers,
   faUsersCog,
   faWrench,
+  faChevronRight, // The arrow thingy
+  faSun,
+  faMoon,
+  faShieldAlt, // looks like the closest thing to the shield in the IT cybersecurity website
 } from '@fortawesome/free-solid-svg-icons';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -71,5 +75,9 @@ export const loadIcons = () => {
     faUsers,
     faUsersCog,
     faWrench,
+    faChevronRight,
+    faSun,
+    faMoon,
+    faShieldAlt,
   );
 };

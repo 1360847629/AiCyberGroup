@@ -13,6 +13,7 @@ import org.cyberwarriors.service.dto.JobRequestDTO;
 import org.cyberwarriors.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -53,8 +54,8 @@ public class JobRequestResource {
      *
      * @param jobRequestDTO the jobRequestDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
-     *         body the new jobRequestDTO, or with status {@code 400 (Bad Request)}
-     *         if the jobRequest has already an ID.
+     * body the new jobRequestDTO, or with status {@code 400 (Bad Request)}
+     * if the jobRequest has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("")
@@ -75,10 +76,10 @@ public class JobRequestResource {
      * @param id            the id of the jobRequestDTO to save.
      * @param jobRequestDTO the jobRequestDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
-     *         the updated jobRequestDTO, or with status {@code 400 (Bad Request)}
-     *         if the jobRequestDTO is not valid, or with status
-     *         {@code 500 (Internal Server Error)} if the jobRequestDTO couldn't be
-     *         updated.
+     * the updated jobRequestDTO, or with status {@code 400 (Bad Request)}
+     * if the jobRequestDTO is not valid, or with status
+     * {@code 500 (Internal Server Error)} if the jobRequestDTO couldn't be
+     * updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{id}")
@@ -111,11 +112,11 @@ public class JobRequestResource {
      * @param id            the id of the jobRequestDTO to save.
      * @param jobRequestDTO the jobRequestDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
-     *         the updated jobRequestDTO, or with status {@code 400 (Bad Request)}
-     *         if the jobRequestDTO is not valid, or with status
-     *         {@code 404 (Not Found)} if the jobRequestDTO is not found, or with
-     *         status {@code 500 (Internal Server Error)} if the jobRequestDTO
-     *         couldn't be updated.
+     * the updated jobRequestDTO, or with status {@code 400 (Bad Request)}
+     * if the jobRequestDTO is not valid, or with status
+     * {@code 404 (Not Found)} if the jobRequestDTO is not found, or with
+     * status {@code 500 (Internal Server Error)} if the jobRequestDTO
+     * couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -151,12 +152,12 @@ public class JobRequestResource {
      *                  applicable for many-to-many).
      * @param filter    the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
-     *         of jobRequests in body.
+     * of jobRequests in body.
      */
     @GetMapping("")
     public ResponseEntity<List<JobRequestDTO>> getAllJobRequests(
         @RequestParam(name = "userId", required = false) Integer userId,
-        @org.springdoc.core.annotations.ParameterObject Pageable pageable,
+        @ParameterObject Pageable pageable,
         @RequestParam(name = "filter", required = false) String filter,
         @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
     ) {
@@ -195,7 +196,7 @@ public class JobRequestResource {
      *
      * @param id the id of the jobRequestDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
-     *         the jobRequestDTO, or with status {@code 404 (Not Found)}.
+     * the jobRequestDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{id}")
     public ResponseEntity<JobRequestDTO> getJobRequest(@PathVariable("id") Long id) {

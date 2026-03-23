@@ -13,6 +13,7 @@ import org.cyberwarriors.service.dto.JobExecutionReportDTO;
 import org.cyberwarriors.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -73,7 +74,7 @@ public class JobExecutionReportResource {
     /**
      * {@code PUT  /job-execution-reports/:id} : Updates an existing jobExecutionReport.
      *
-     * @param id the id of the jobExecutionReportDTO to save.
+     * @param id                    the id of the jobExecutionReportDTO to save.
      * @param jobExecutionReportDTO the jobExecutionReportDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated jobExecutionReportDTO,
      * or with status {@code 400 (Bad Request)} if the jobExecutionReportDTO is not valid,
@@ -106,12 +107,14 @@ public class JobExecutionReportResource {
     /**
      * {@code PATCH  /job-execution-reports/:id} : Partial updates given fields of an existing jobExecutionReport, field will ignore if it is null
      *
-     * @param id the id of the jobExecutionReportDTO to save.
+     * @param id                    the id of the jobExecutionReportDTO to save.
      * @param jobExecutionReportDTO the jobExecutionReportDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated jobExecutionReportDTO,
-     * or with status {@code 400 (Bad Request)} if the jobExecutionReportDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the jobExecutionReportDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the jobExecutionReportDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     * the updated jobExecutionReportDTO, or with status {@code 400 (Bad Request)}
+     * if the jobExecutionReportDTO is not valid, or with status
+     * {@code 404 (Not Found)} if the jobExecutionReportDTO is not found, or with
+     * status {@code 500 (Internal Server Error)} if the jobExecutionReportDTO
+     * couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -142,22 +145,32 @@ public class JobExecutionReportResource {
     /**
      * {@code GET  /job-execution-reports} : get all the jobExecutionReports.
      *
-     * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of jobExecutionReports in body.
+     * @param pageable  the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * @param filter    the filter of the request.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     * of jobExecutionReports in body.
      */
     @GetMapping("")
     public ResponseEntity<List<JobExecutionReportDTO>> getAllJobExecutionReports(
-        @org.springdoc.core.annotations.ParameterObject Pageable pageable,
+        @RequestParam(name = "userId", required = false) Integer userId,
+        @ParameterObject Pageable pageable,
+        @RequestParam(name = "filter", required = false) String filter,
         @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
     ) {
         LOG.debug("REST request to get a page of JobExecutionReports");
         Page<JobExecutionReportDTO> page;
+
         if (eagerload) {
+            if (userId != null) {
+                page = jobExecutionReportService.findAllByUserId(userId, pageable);
+            }
             page = jobExecutionReportService.findAllWithEagerRelationships(pageable);
         } else {
             page = jobExecutionReportService.findAll(pageable);
         }
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -166,7 +179,8 @@ public class JobExecutionReportResource {
      * {@code GET  /job-execution-reports/:id} : get the "id" jobExecutionReport.
      *
      * @param id the id of the jobExecutionReportDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the jobExecutionReportDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     * the jobExecutionReportDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/{id}")
     public ResponseEntity<JobExecutionReportDTO> getJobExecutionReport(@PathVariable("id") Long id) {

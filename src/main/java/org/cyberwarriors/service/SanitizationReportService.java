@@ -121,4 +121,9 @@ public class SanitizationReportService {
         LOG.debug("Request to delete SanitizationReport : {}", id);
         sanitizationReportRepository.deleteById(id);
     }
+
+    @Transactional(readOnly = true)
+    public Page<SanitizationReportDTO> findAllByUserId(Integer userId, Pageable pageable) {
+        return sanitizationReportRepository.findAllByUserId(userId, pageable).map(sanitizationReportMapper::toDto);
+    }
 }

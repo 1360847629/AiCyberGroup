@@ -2,13 +2,58 @@
 @import 'bootstrap-variables';
 // Import Bootstrap source files from node_modules
 @import 'bootstrap/scss/bootstrap';
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --cy-dark: #141413;
+  --cy-light: #fff1e2;
+  --cy-mid-gray: #78574d;
+  --cy-light-gray: #ffecd7;
+  --cy-pampas: #f0efea;
+  --cy-orange: #ffead3;
+  --cy-orange-hover: #c4684a;
+  --cy-accent: #d97757;
+  --topbar-height: 3.5rem;
+  --sidebar-width: 240px;
+}
+
+body.dark-mode {
+  --cy-dark: #e8e0d6;
+  --cy-light: #141414;
+  --cy-mid-gray: #a8998f;
+  --cy-light-gray: #0f0f0f;
+  --cy-pampas: #222220;
+  --cy-orange: #212020;
+  --cy-orange-hover: #c4684a;
+  --cy-accent: #983c1e;
+}
+
 body {
-  background: #fafafa;
+  background: var(--cy-light);
+  color: var(--cy-dark);
   margin: 0;
+  transition:
+    color 0.4s ease,
+    background-color 0.4s ease;
+}
+
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    color 0.4s ease;
+}
+
+::selection {
+  background: rgba(217, 119, 87, 0.2);
+  color: var(--cy-dark);
 }
 
 a {
-  color: #533f03;
+  color: var(--cy-accent);
   font-weight: bold;
 }
 
@@ -24,12 +69,16 @@ a {
 
 .app-container {
   box-sizing: border-box;
+  padding-top: var(--topbar-height, 3.5rem);
+
   .view-container {
     width: 100%;
-    height: calc(100% - 40px);
+    min-height: calc(100vh - var(--topbar-height, 3.5rem));
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1rem;
+    transition: margin-left 0.4s ease;
+
     .card {
       padding: 1rem;
     }
@@ -42,6 +91,23 @@ a {
   }
 }
 
+body.sidebar-visible .view-container {
+  margin-left: var(--sidebar-width, 240px);
+}
+body.sidebar-collapsed .view-container {
+  margin-left: 0;
+}
+
+@media (max-width: 768px) {
+  body.sidebar-visible .view-container {
+    margin-left: 0 !important;
+  }
+}
+
+/* ==========================================================================
+Browser Upgrade Stuff [?]
+========================================================================== */
+
 .fullscreen {
   position: fixed;
   top: 100px;
@@ -52,10 +118,6 @@ a {
   z-index: 1000;
   padding: 5px 25px 50px 25px !important;
 }
-
-/* ==========================================================================
-Browser Upgrade Prompt
-========================================================================== */
 
 .browserupgrade {
   margin: 0.2em 0;
@@ -87,7 +149,7 @@ Custom button styles
 Generic styles
 ========================================================================== */
 
-/* Temporary workaround for availity-reactstrap-validation */
+/* Temporary workaround for availability-reactstrap-validation */
 .invalid-feedback {
   display: inline;
 }
@@ -132,8 +194,19 @@ Generic styles
 
 /* Margin Styling*/
 .margin-card {
-  background-color: #132531;
+  background-color: transparent;
   border: 0;
+}
+
+.view-container:has(.home-page) {
+  padding: 0 !important;
+  .card {
+    padding: 0 !important;
+  }
+}
+
+body.dark-mode .app-footer {
+  background: #0a0a0a;
 }
 
 /* padding helpers */
@@ -316,6 +389,11 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
 
 .width-min {
   width: 1% !important;
+}
+
+.table {
+  --bs-table-color: var(--cy-dark);
+  --bs-table-bg: transparent;
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */

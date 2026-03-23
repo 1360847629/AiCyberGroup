@@ -13,6 +13,7 @@ import org.cyberwarriors.service.dto.JobReportDTO;
 import org.cyberwarriors.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,6 +52,9 @@ public class JobReportResource {
      * {@code POST  /job-reports} : Create a new jobReport.
      *
      * @param jobReportDTO the jobReportDTO to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     * body the new jobReportDTO, or with status {@code 400 (Bad Request)}
+     * if the jobReport has already an ID.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new jobReportDTO, or with status {@code 400 (Bad Request)} if the jobReport has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
@@ -69,11 +73,13 @@ public class JobReportResource {
     /**
      * {@code PUT  /job-reports/:id} : Updates an existing jobReport.
      *
-     * @param id the id of the jobReportDTO to save.
+     * @param id           the id of the jobReportDTO to save.
      * @param jobReportDTO the jobReportDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated jobReportDTO,
-     * or with status {@code 400 (Bad Request)} if the jobReportDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the jobReportDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     * the updated jobReportDTO, or with status {@code 400 (Bad Request)}
+     * if the jobReportDTO is not valid, or with status
+     * {@code 500 (Internal Server Error)} if the jobReportDTO couldn't be
+     * updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/{id}")
@@ -100,14 +106,17 @@ public class JobReportResource {
     }
 
     /**
-     * {@code PATCH  /job-reports/:id} : Partial updates given fields of an existing jobReport, field will ignore if it is null
+     * {@code PATCH  /job-requests/:id} : Partial updates given fields of an
+     * existing jobReport, field will ignore if it is null
      *
-     * @param id the id of the jobReportDTO to save.
+     * @param id           the id of the jobReportDTO to save.
      * @param jobReportDTO the jobReportDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated jobReportDTO,
-     * or with status {@code 400 (Bad Request)} if the jobReportDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the jobReportDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the jobReportDTO couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     * the updated jobReportDTO, or with status {@code 400 (Bad Request)}
+     * if the jobReportDTO is not valid, or with status
+     * {@code 404 (Not Found)} if the jobReportDTO is not found, or with
+     * status {@code 500 (Internal Server Error)} if the jobReportDTO
+     * couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -138,22 +147,32 @@ public class JobReportResource {
     /**
      * {@code GET  /job-reports} : get all the jobReports.
      *
-     * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of jobReports in body.
+     * @param pageable  the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * @param filter    the filter of the request.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     * of jobReports in body.
      */
     @GetMapping("")
     public ResponseEntity<List<JobReportDTO>> getAllJobReports(
-        @org.springdoc.core.annotations.ParameterObject Pageable pageable,
+        @RequestParam(name = "userId", required = false) Integer userId,
+        @ParameterObject Pageable pageable,
+        @RequestParam(name = "filter", required = false) String filter,
         @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
     ) {
         LOG.debug("REST request to get a page of JobReports");
         Page<JobReportDTO> page;
+
         if (eagerload) {
+            if (userId != null) {
+                page = jobReportService.findAllByUserId(userId, pageable);
+            }
             page = jobReportService.findAllWithEagerRelationships(pageable);
         } else {
             page = jobReportService.findAll(pageable);
         }
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -162,7 +181,9 @@ public class JobReportResource {
      * {@code GET  /job-reports/:id} : get the "id" jobReport.
      *
      * @param id the id of the jobReportDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the jobReportDTO, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     * the jobReportDTO, or with status {@code 404 (Not Found)}.
+     *
      */
     @GetMapping("/{id}")
     public ResponseEntity<JobReportDTO> getJobReport(@PathVariable("id") Long id) {
