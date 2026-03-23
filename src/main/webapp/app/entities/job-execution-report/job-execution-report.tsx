@@ -24,10 +24,11 @@ export const JobExecutionReport = () => {
   const jobExecutionReportList = useAppSelector(state => state.jobExecutionReport.entities);
   const loading = useAppSelector(state => state.jobExecutionReport.loading);
   const totalItems = useAppSelector(state => state.jobExecutionReport.totalItems);
-
+  const account = useAppSelector(state => state.authentication.account);
   const getAllEntities = () => {
     dispatch(
       getEntities({
+        id: account?.id,
         page: paginationState.activePage - 1,
         size: paginationState.itemsPerPage,
         sort: `${paginationState.sort},${paginationState.order}`,

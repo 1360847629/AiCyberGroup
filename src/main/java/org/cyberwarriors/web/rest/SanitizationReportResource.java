@@ -164,8 +164,7 @@ public class SanitizationReportResource {
         if (eagerload) {
             if (userId != null) {
                 page = sanitizationReportService.findAllByUserId(userId, pageable);
-            }
-            page = sanitizationReportService.findAllWithEagerRelationships(pageable);
+            } else page = sanitizationReportService.findAllWithEagerRelationships(pageable);
         } else {
             page = sanitizationReportService.findAll(pageable);
         }

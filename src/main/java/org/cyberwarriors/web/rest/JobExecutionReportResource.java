@@ -165,8 +165,7 @@ public class JobExecutionReportResource {
         if (eagerload) {
             if (userId != null) {
                 page = jobExecutionReportService.findAllByUserId(userId, pageable);
-            }
-            page = jobExecutionReportService.findAllWithEagerRelationships(pageable);
+            } else page = jobExecutionReportService.findAllWithEagerRelationships(pageable);
         } else {
             page = jobExecutionReportService.findAll(pageable);
         }

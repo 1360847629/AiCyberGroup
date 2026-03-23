@@ -20,8 +20,9 @@ const apiUrl = 'api/job-reports';
 
 export const getEntities = createAsyncThunk(
   'jobReport/fetch_entity_list',
-  async ({ page, size, sort }: IQueryParams) => {
-    const requestUrl = `${apiUrl}?${sort ? `page=${page}&size=${size}&sort=${sort}&` : ''}cacheBuster=${new Date().getTime()}`;
+  async ({ id, page, size, sort }: IQueryParams) => {
+    const requestUrl = `${apiUrl}?${sort ? `page=${page}&size=${size}&sort=${sort}&` : ''}${id ? `userId=${id}&` : ''}cacheBuster=${new Date().getTime()}`;
+
     return axios.get<IJobReport[]>(requestUrl);
   },
   { serializeError: serializeAxiosError },
