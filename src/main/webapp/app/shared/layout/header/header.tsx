@@ -1,7 +1,7 @@
 import './header.scss';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LoadingBar from 'react-redux-loading-bar';
 
@@ -15,6 +15,7 @@ export interface IHeaderProps {
 }
 
 const Header = (props: IHeaderProps) => {
+  const navigate = useNavigate();
   const [hasScrolledPastBanner, setHasScrolledPastBanner] = useState(true);
   const [activeDropdownId, setActiveDropdownId] = useState<string | null>(null);
   const [darkMode, setDarkMode] = useState(() => {
@@ -68,10 +69,18 @@ const Header = (props: IHeaderProps) => {
     setActiveDropdownId(prev => (prev === id ? null : id));
   }, []);
 
-  const scrollToTop = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  const goHome = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      if (props.isAuthenticated) {
+        // there's definitely a better way to do this, not sure how though
+        navigate('/?page=1&sort=id,asc');
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    },
+    [props.isAuthenticated, navigate],
+  );
 
   const AccountDropdown = ({ prefix }: { prefix: string }) => {
     const id = `${prefix}-account`;
@@ -208,7 +217,7 @@ const Header = (props: IHeaderProps) => {
             <FontAwesomeIcon icon={darkMode ? 'sun' : 'moon'} className="nav-icon" />
             {darkMode ? 'Light' : 'Dark'}
           </button>
-          <a href="#top" onClick={scrollToTop} className="nav-btn">
+          <a href="/" onClick={goHome} className="nav-btn">
             <FontAwesomeIcon icon="home" className="nav-icon" /> Home
           </a>
           {props.isAuthenticated && <EntitiesDropdown prefix="header" />}
@@ -222,7 +231,7 @@ const Header = (props: IHeaderProps) => {
           <div className="sidebar-label">Navigation</div>
           <ul className="sidebar-list">
             <li>
-              <a href="#top" onClick={scrollToTop} className="nav-btn active">
+              <a href="/" onClick={goHome} className="nav-btn active">
                 <FontAwesomeIcon icon="home" className="nav-icon" /> Home
               </a>
             </li>
