@@ -396,4 +396,37 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
   --bs-table-bg: transparent;
 }
 
+/* Ensure Bootstrap components use theme text color */
+.form-control,
+.form-select,
+.input-group-text,
+.card,
+.modal-content,
+.list-group-item,
+.dropdown-menu,
+.dropdown-item,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+label,
+li,
+td,
+th,
+div {
+  color: inherit;
+}
+
+.btn-info,
+.btn-primary,
+.btn-danger,
+.btn-warning,
+.btn-success {
+  color: #fff;
+}
+
 /* jhipster-needle-scss-add-main JHipster will add new css style */
