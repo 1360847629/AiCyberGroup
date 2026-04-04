@@ -23,11 +23,6 @@ export const Home = () => {
                 <Translate contentKey="home.subtitle">Where Cyber AI Meets Innovation</Translate>
               </p>
             </Col>
-            <Col md="3" className="header-sponsor-inline">
-              <a href="https://lillyendowment.org/" target="_blank" rel="noopener noreferrer" className="header-sponsor-link">
-                <img src="/content/images/lily_logo.jpg" alt="Sponsor Logo" className="header-sponsor-logo" />
-              </a>
-            </Col>
           </Row>
         </Container>
       </header>

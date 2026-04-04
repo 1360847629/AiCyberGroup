@@ -6,7 +6,6 @@ import { Translate } from 'react-jhipster';
 const bottomLinks = [
   { href: 'https://indianatech.edu', label: 'Indiana Tech', icon: '/content/images/it_logo.svg' },
   { href: 'https://techcyberwarriors.org', label: 'Cyber Warriors', icon: '/content/images/shield.svg' },
-  { href: 'https://lillyendowment.org', label: 'Lilly Endowment', icon: '/content/images/lilly.svg' },
 ];
 
 const Footer = () => (
@@ -26,9 +25,6 @@ const Footer = () => (
       <span className="footer-copyright">
         <Translate contentKey="footer.copyright">&copy; 2026 Cyber AI Group. All Rights Reserved</Translate>
       </span>
-      <a href="https://lillyendowment.org" target="_blank" rel="noopener noreferrer" className="footer-sponsor-link">
-        <img src="/content/images/lily_logo.jpg" alt="Lilly Endowment" className="footer-sponsor-logo" />
-      </a>
     </div>
   </footer>
 );
