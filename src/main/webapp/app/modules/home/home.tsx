@@ -5,6 +5,10 @@ import { Translate } from 'react-jhipster';
 import { Alert, Col, Row, Container } from 'reactstrap';
 
 import { useAppSelector } from 'app/config/store';
+import { JobRequest } from 'app/entities/job-request/job-request';
+import { JobExecutionReport } from 'app/entities/job-execution-report/job-execution-report';
+import { JobReport } from 'app/entities/job-report/job-report';
+import { SanitizationReport } from 'app/entities/sanitization-report/sanitization-report';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
@@ -101,6 +105,10 @@ export const Home = () => {
                   You are logged in as user {account.login}.
                 </Translate>
               </Alert>
+              <JobRequest />
+              <SanitizationReport />
+              <JobExecutionReport />
+              <JobReport />
             </div>
           )}
           <div className="questions-section">
