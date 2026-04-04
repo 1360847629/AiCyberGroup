@@ -8,6 +8,8 @@ export const Logout = () => {
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
+    localStorage.setItem('cy-dark-mode', 'true');
+    document.body.classList.add('dark-mode');
     dispatch(logout());
     if (authentication.logoutUrl) {
       window.location.href = authentication.logoutUrl;

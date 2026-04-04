@@ -100,16 +100,6 @@ export const SanitizationReport = () => {
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="cyberClinicApp.sanitizationReport.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          <Link
-            to="/sanitization-report/new"
-            className="btn btn-primary jh-create-entity"
-            id="jh-create-entity"
-            data-cy="entityCreateButton"
-          >
-            <FontAwesomeIcon icon="plus" />
-            &nbsp;
-            <Translate contentKey="cyberClinicApp.sanitizationReport.home.createLabel">Create new Sanitization Report</Translate>
-          </Link>
         </div>
       </h2>
       <div className="table-responsive">
@@ -140,7 +130,6 @@ export const SanitizationReport = () => {
                 <th>
                   <Translate contentKey="cyberClinicApp.sanitizationReport.user">User</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th />
               </tr>
             </thead>
             <tbody>
@@ -166,23 +155,6 @@ export const SanitizationReport = () => {
                     )}
                   </td>
                   <td>{sanitizationReport.user ? sanitizationReport.user.login : ''}</td>
-                  <td className="text-end">
-                    <div className="btn-group flex-btn-group-container">
-                      <Button
-                        onClick={() =>
-                          (window.location.href = `/sanitization-report/${sanitizationReport.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`)
-                        }
-                        color="danger"
-                        size="sm"
-                        data-cy="entityDeleteButton"
-                      >
-                        <FontAwesomeIcon icon="trash" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
-                        </span>
-                      </Button>
-                    </div>
-                  </td>
                 </tr>
               ))}
             </tbody>
