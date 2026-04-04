@@ -99,11 +99,6 @@ export const JobReport = () => {
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="cyberClinicApp.jobReport.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          <Link to="/job-report/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
-            <FontAwesomeIcon icon="plus" />
-            &nbsp;
-            <Translate contentKey="cyberClinicApp.jobReport.home.createLabel">Create new Job Report</Translate>
-          </Link>
         </div>
       </h2>
       <div className="table-responsive">
@@ -132,7 +127,6 @@ export const JobReport = () => {
                 <th>
                   <Translate contentKey="cyberClinicApp.jobReport.user">User</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th />
               </tr>
             </thead>
             <tbody>
@@ -150,23 +144,6 @@ export const JobReport = () => {
                     {jobReport.jobRequest ? <Link to={`/job-request/${jobReport.jobRequest.id}`}>{jobReport.jobRequest.id}</Link> : ''}
                   </td>
                   <td>{jobReport.user ? jobReport.user.login : ''}</td>
-                  <td className="text-end">
-                    <div className="btn-group flex-btn-group-container">
-                      <Button
-                        onClick={() =>
-                          (window.location.href = `/job-report/${jobReport.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`)
-                        }
-                        color="danger"
-                        size="sm"
-                        data-cy="entityDeleteButton"
-                      >
-                        <FontAwesomeIcon icon="trash" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
-                        </span>
-                      </Button>
-                    </div>
-                  </td>
                 </tr>
               ))}
             </tbody>

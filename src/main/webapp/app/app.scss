@@ -70,10 +70,13 @@ a {
 .app-container {
   box-sizing: border-box;
   padding-top: var(--topbar-height, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
   .view-container {
+    flex: 1;
     width: 100%;
-    min-height: calc(100vh - var(--topbar-height, 3.5rem));
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1rem;

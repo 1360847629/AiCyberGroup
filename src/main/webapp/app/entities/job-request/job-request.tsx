@@ -100,11 +100,6 @@ export const JobRequest = () => {
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="cyberClinicApp.jobRequest.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          <Link to="/job-request/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
-            <FontAwesomeIcon icon="plus" />
-            &nbsp;
-            <Translate contentKey="cyberClinicApp.jobRequest.home.createLabel">Create new Job Request</Translate>
-          </Link>
         </div>
       </h2>
       <div className="table-responsive">
@@ -147,7 +142,6 @@ export const JobRequest = () => {
                 <th>
                   <Translate contentKey="cyberClinicApp.jobRequest.user">User</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th />
               </tr>
             </thead>
             <tbody>
@@ -188,23 +182,6 @@ export const JobRequest = () => {
                   </td>
                   <td>{jobRequest.fileName}</td>
                   <td>{jobRequest.user ? jobRequest.user.login : ''}</td>
-                  <td className="text-end">
-                    <div className="btn-group flex-btn-group-container">
-                      <Button
-                        onClick={() =>
-                          (window.location.href = `/job-request/${jobRequest.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`)
-                        }
-                        color="danger"
-                        size="sm"
-                        data-cy="entityDeleteButton"
-                      >
-                        <FontAwesomeIcon icon="trash" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
-                        </span>
-                      </Button>
-                    </div>
-                  </td>
                 </tr>
               ))}
             </tbody>

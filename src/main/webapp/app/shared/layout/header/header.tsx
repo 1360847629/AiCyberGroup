@@ -21,7 +21,8 @@ const Header = (props: IHeaderProps) => {
   const [darkMode, setDarkMode] = useState(() => {
     const stored = localStorage.getItem('cy-dark-mode');
     if (stored !== null) return stored === 'true';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return true; // Forces dark mode
   });
 
   useEffect(() => {
@@ -213,10 +214,12 @@ const Header = (props: IHeaderProps) => {
         </Link>
 
         <nav className={`header-nav ${hasScrolledPastBanner ? 'is-visible' : 'is-hidden'}`}>
-          <button onClick={() => setDarkMode(prev => !prev)} className="nav-btn" title={darkMode ? 'Light' : 'Dark'}>
-            <FontAwesomeIcon icon={darkMode ? 'sun' : 'moon'} className="nav-icon" />
-            {darkMode ? 'Light' : 'Dark'}
-          </button>
+          {props.isAuthenticated && (
+            <button onClick={() => setDarkMode(prev => !prev)} className="nav-btn" title={darkMode ? 'Light' : 'Dark'}>
+              <FontAwesomeIcon icon={darkMode ? 'sun' : 'moon'} className="nav-icon" />
+              {darkMode ? 'Light' : 'Dark'}
+            </button>
+          )}
           <a href="/" onClick={goHome} className="nav-btn">
             <FontAwesomeIcon icon="home" className="nav-icon" /> Home
           </a>
@@ -248,12 +251,14 @@ const Header = (props: IHeaderProps) => {
             <li>
               <AccountDropdown prefix="sidebar" />
             </li>
-            <li>
-              <button onClick={() => setDarkMode(prev => !prev)} className="nav-btn" title={darkMode ? 'Light mode' : 'Dark mode'}>
-                <FontAwesomeIcon icon={darkMode ? 'sun' : 'moon'} className="nav-icon" />
-                {darkMode ? 'Light Mode' : 'Dark Mode'}
-              </button>
-            </li>
+            {props.isAuthenticated && (
+              <li>
+                <button onClick={() => setDarkMode(prev => !prev)} className="nav-btn" title={darkMode ? 'Light mode' : 'Dark mode'}>
+                  <FontAwesomeIcon icon={darkMode ? 'sun' : 'moon'} className="nav-icon" />
+                  {darkMode ? 'Light Mode' : 'Dark Mode'}
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </aside>

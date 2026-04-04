@@ -2,20 +2,11 @@
 Main page styles
 ========================================================================== */
 
-body {
-  background-color: #132531;
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
-}
-
 .home-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100%;
   max-width: 100%;
-  background-color: #132531;
   border: 0;
   margin: 0;
   padding: 0;
@@ -261,9 +252,55 @@ body {
   background-size: contain;
 }
 
+/* Collapsible Entity Sections */
+.entity-section {
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.entity-section-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: var(--cy-dark);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(250, 70, 22, 0.15);
+  }
+}
+
+.entity-section-arrow {
+  font-size: 0.75rem;
+  transition: transform 0.25s ease;
+
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+
+.entity-section-body {
+  padding: 16px;
+  background: #ffead3;
+}
+
+body.dark-mode .entity-section-body {
+  background: rgba(0, 0, 0, 0.15);
+}
+
 /* Questions Section */
 .questions-section {
-  color: #ffffff;
+  color: var(--cy-dark);
 }
 
 /* Link Styling */
