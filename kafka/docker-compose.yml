@@ -29,7 +29,16 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - '7001:8080'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - open-webui:/app/backend/data
+    restart: always
   kafka-ui:
     image: docker.redpanda.com/redpandadata/console:latest
     depends_on:
@@ -59,3 +68,4 @@ volumes:
   zookeeper_data:
   zookeeper_log:
   kafka_data:
+  open-webui:
